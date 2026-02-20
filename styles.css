@@ -1,63 +1,105 @@
-   body {
-      margin: 0;
-      font-family: 'Orbitron', sans-serif;
-      background: linear-gradient(to bottom right, black, #4b0082, #8b0000);
-      color: white;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      padding: 2rem;
-    }
-    .container {
-      max-width: 800px;
-      text-align: center;
-    }
-    h1 {
-      font-size: 3rem;
-      color: #ff4d4d;
-      margin-bottom: 1rem;
-    }
-    p {
-      font-size: 1.2rem;
-      color: #d8b4fe;
-      margin-bottom: 2rem;
-    }
-    .buttons {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-    .button {
-      padding: 1rem 2rem;
-      border: none;
-      border-radius: 12px;
-      font-size: 1rem;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-    .install {
-      background-color: #8b0000;
-      color: white;
-    }
-    .install:hover {
-      background-color: #a10000;
-    }
-    .web {
-      background-color: transparent;
-      color: #d8b4fe;
-      border: 2px solid #d8b4fe;
-    }
-    .web:hover {
-      background-color: #4b0082;
-    }
-    .info {
-      margin-top: 3rem;
-      padding: 1.5rem;
-      background-color: rgba(0, 0, 0, 0.5);
-      border: 1px solid #6b21a8;
-      border-radius: 12px;
-      color: #e9d5ff;
-      font-size: 0.95rem;
-    }
+/* =========================
+   GLOBAL
+========================= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Orbitron', sans-serif;
+  background: linear-gradient(135deg, #000000, #2a004f 50%, #6b0000);
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 2rem;
+  text-align: center;
+}
+
+/* =========================
+   CONTAINER
+========================= */
+.container {
+  max-width: 800px;
+  width: 100%;
+}
+
+/* =========================
+   TYPOGRAPHY
+========================= */
+h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  color: #ff4d4d;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 15px rgba(255, 77, 77, 0.6);
+}
+
+p {
+  font-size: 1.1rem;
+  color: #d8b4fe;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.button {
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  border: none;
+}
+
+/* Primary */
+.install {
+  background: #8b0000;
+  color: #ffffff;
+  box-shadow: 0 0 12px rgba(139, 0, 0, 0.6);
+}
+
+.install:hover {
+  background: #a10000;
+  transform: translateY(-3px);
+  box-shadow: 0 0 20px rgba(161, 0, 0, 0.8);
+}
+
+/* Secondary */
+.web {
+  background: transparent;
+  color: #d8b4fe;
+  border: 2px solid #d8b4fe;
+}
+
+.web:hover {
+  background: #4b0082;
+  transform: translateY(-3px);
+  box-shadow: 0 0 15px rgba(75, 0, 130, 0.6);
+}
+
+/* =========================
+   INFO BOX
+========================= */
+.info {
+  margin-top: 3rem;
+  padding: 1.5rem;
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid #6b21a8;
+  border-radius: 12px;
+  color: #e9d5ff;
+  font-size: 0.95rem;
+  backdrop-filter: blur(6px);
+}

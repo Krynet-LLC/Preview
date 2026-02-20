@@ -1,66 +1,126 @@
+/* ==================================================
+   PRODUCTION SITE SCRIPT
+   - Optimized
+   - Minimal DOM writes
+   - No unnecessary intervals
+   - Tab visibility aware
+================================================== */
 
-/* =========================
-   MINI UTIL
-========================= */
-const $ = (s, p = document) => p.querySelector(s);
+(() => {
+  'use strict';
 
-/* =========================
-   COUNTDOWN
-========================= */
-function initCountdown() {
-  const releaseDate = new Date('2030-12-31T00:00:00Z').getTime();
+  /* =========================
+     UTIL
+  ========================= */
+  const $ = (selector, parent = document) =>
+    parent.querySelector(selector);
 
-  const elDays = $('#days');
-  const elHours = $('#hours');
-  const elMinutes = $('#minutes');
-  const elSeconds = $('#seconds');
+  const $$ = (selector, parent = document) =>
+    parent.querySelectorAll(selector);
 
-  if (!elDays || !elHours || !elMinutes || !elSeconds) return;
+  /* =========================
+     COUNTDOWN MODULE
+  ========================= */
+  function initCountdown() {
+    const releaseDate = new Date('2030-12-31T00:00:00Z').getTime();
 
-  let interval;
+    const elDays = $('#days');
+    const elHours = $('#hours');
+    const elMinutes = $('#minutes');
+    const elSeconds = $('#seconds');
 
-  const update = () => {
-    const now = Date.now();
-    const diff = releaseDate - now;
+    if (!elDays || !elHours || !elMinutes || !elSeconds) return;
 
-    if (diff <= 0) {
-      clearInterval(interval);
-      elDays.textContent = 0;
-      elHours.textContent = 0;
-      elMinutes.textContent = 0;
-      elSeconds.textContent = 0;
-      return;
-    }
+    let interval = null;
 
-    const days = Math.floor(diff / 86400000);
-    const hours = Math.floor((diff % 86400000) / 3600000);
-    const minutes = Math.floor((diff % 3600000) / 60000);
-    const seconds = Math.floor((diff % 60000) / 1000);
+    const update = () => {
+      const now = Date.now();
+      const diff = releaseDate - now;
 
-    // Only update if changed (micro-optimization)
-    if (elDays.textContent !== String(days)) elDays.textContent = days;
-    if (elHours.textContent !== String(hours)) elHours.textContent = hours;
-    if (elMinutes.textContent !== String(minutes)) elMinutes.textContent = minutes;
-    if (elSeconds.textContent !== String(seconds)) elSeconds.textContent = seconds;
-  };
+      if (diff <= 0) {
+        stop();
+        setValues(0, 0, 0, 0);
+        return;
+      }
 
-  interval = setInterval(update, 1000);
-  update();
+      const days = Math.floor(diff / 86400000);
+      const hours = Math.floor((diff % 86400000) / 3600000);
+      const minutes = Math.floor((diff % 3600000) / 60000);
+      const seconds = Math.floor((diff % 60000) / 1000);
 
-  // Pause when tab inactive
-  document.addEventListener('visibilitychange', () => {
-    if (document.hidden) {
-      clearInterval(interval);
-    } else {
-      update();
+      setValues(days, hours, minutes, seconds);
+    };
+
+    const setValues = (d, h, m, s) => {
+      if (elDays.textContent !== String(d)) elDays.textContent = d;
+      if (elHours.textContent !== String(h)) elHours.textContent = h;
+      if (elMinutes.textContent !== String(m)) elMinutes.textContent = m;
+      if (elSeconds.textContent !== String(s)) elSeconds.textContent = s;
+    };
+
+    const start = () => {
+      if (interval) return;
       interval = setInterval(update, 1000);
-    }
-  });
-}
+    };
 
-/* =========================
-   INIT
-========================= */
-document.addEventListener('DOMContentLoaded', () => {
-  initCountdown();
-});
+    const stop = () => {
+      if (!interval) return;
+      clearInterval(interval);
+      interval = null;
+    };
+
+    document.addEventListener('visibilitychange', () => {
+      document.hidden ? stop() : (update(), start());
+    });
+
+    update();
+    start();
+  }
+
+  /* =========================
+     BUTTON INTERACTIONS
+  ========================= */
+  function initButtons() {
+    const buttons = $$('.button');
+    if (!buttons.length) return;
+
+    buttons.forEach(btn => {
+      btn.addEventListener('pointerdown', () =>
+        btn.classList.add('pressed')
+      );
+
+      btn.addEventListener('pointerup', () =>
+        btn.classList.remove('pressed')
+      );
+
+      btn.addEventListener('pointerleave', () =>
+        btn.classList.remove('pressed')
+      );
+    });
+  }
+
+  /* =========================
+     EXTERNAL LINK SAFETY
+  ========================= */
+  function initExternalLinks() {
+    const links = $$('a[href^="http"]');
+    if (!links.length) return;
+
+    links.forEach(link => {
+      if (link.hostname !== location.hostname) {
+        link.rel = 'noopener noreferrer';
+        link.target = '_blank';
+      }
+    });
+  }
+
+  /* =========================
+     INIT
+  ========================= */
+  document.addEventListener('DOMContentLoaded', () => {
+    initCountdown();
+    initButtons();
+    initExternalLinks();
+  });
+
+})();

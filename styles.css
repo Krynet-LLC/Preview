@@ -103,3 +103,27 @@ p {
   font-size: 0.95rem;
   backdrop-filter: blur(6px);
 }
+.countdown {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 3rem;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.countdown div {
+  text-align: center;
+}
+
+.countdown span {
+  display: block;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #ff4d4d;
+}
+
+.countdown small {
+  font-size: 0.75rem;
+  color: #d8b4fe;
+  letter-spacing: 1px;
+}

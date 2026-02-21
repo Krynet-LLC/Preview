@@ -10,7 +10,7 @@
     "icons": [
       "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     ],
-    "siteLogo": "logo.png"
+    "siteLogo": "https://github.com/JamesHickers/Krynet-Skynet/blob/main/krynet-icon.png?raw=true"
   },
   "header": {
     "title": "Krynet.ai",
@@ -19,7 +19,7 @@
     "ceo": {
       "name": "Johnny",
       "title": "CEO",
-      "img": "ceo.png",
+      "img": "https://github.com/Krynet-LLC/Preview/blob/main/ceo.png?raw=true",
       "bio": "Leading Krynet.ai to set new standards in privacy, security, and communication."
     },
     "platforms": [

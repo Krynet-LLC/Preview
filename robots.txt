@@ -1,1 +1,5 @@
-
+# robots.txt - Strictest, block all crawlers from everything
+User-agent: *
+Disallow: /
+Noindex: /
+Nofollow: /

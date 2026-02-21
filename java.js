@@ -1,14 +1,11 @@
 /* ==================================================
-   PRODUCTION SITE SCRIPT
-   - Countdown with hype text & emojis
-   - Dynamic config loading (Krynet.ai)
-   - Sections, platforms, techs, CEO, repos
-   - Animated cards
-   - Countdown-triggered "Out Now!" button
-   - Optimized DOM writes
-   - Tab visibility aware
+   Krynet.ai Preview JS
+   - Loads config.json from GitHub
+   - Countdown with hype text
+   - Renders all sections, platforms, tech, CEO, repos
+   - Adds "Out Now!" button when countdown ends
+   - Animations & tab visibility aware
 ================================================== */
-
 (() => {
   'use strict';
 
@@ -17,14 +14,12 @@
   ========================= */
   const $ = (selector, parent = document) => parent.querySelector(selector);
   const $$ = (selector, parent = document) => Array.from(parent.querySelectorAll(selector));
-
   const createEl = (tag, props = {}, children = []) => {
     const el = document.createElement(tag);
     Object.entries(props).forEach(([k, v]) => el.setAttribute(k, v));
     children.forEach(c => el.appendChild(c));
     return el;
   };
-
   const fadeIn = (el, delay = 0) => {
     el.style.opacity = 0;
     el.style.transform = 'translateY(20px)';
@@ -36,16 +31,16 @@
   };
 
   /* =========================
-     CONFIG LOAD MODULE
+     CONFIG LOAD
   ========================= */
   async function loadConfig() {
-    const res = await fetch('config.json');
+    const res = await fetch('https://raw.githubusercontent.com/Krynet-LLC/Preview/main/config.json');
     const config = await res.json();
     renderSite(config);
   }
 
   /* =========================
-     SITE RENDERING
+     RENDER SITE
   ========================= */
   function renderSite(config) {
     // Header
@@ -64,11 +59,11 @@
     // Platforms
     const platformsContainer = $('.icon-grid.platforms');
     platformsContainer.innerHTML = '';
-    config.header.platforms.forEach(p => {
+    config.header.platforms.forEach((p, i) => {
       const div = createEl('div', { class: 'icon-item' });
       div.innerHTML = `<i class="${p.icon}"></i> ${p.name}${p.note ? ' (' + p.note + ')' : ''}`;
       platformsContainer.appendChild(div);
-      fadeIn(div, 0.1);
+      fadeIn(div, i * 0.05);
     });
 
     // Technologies
@@ -88,6 +83,7 @@
       const sec = createEl('section');
       sec.appendChild(createEl('h2', {}, [document.createTextNode(section.title)]));
 
+      // Features
       if (section.features) {
         const ul = createEl('ul', { class: 'feature-grid' });
         section.features.forEach((f, i) => {
@@ -110,7 +106,7 @@
       if (section.repos) {
         const repoDiv = createEl('div', { class: 'repo-list' });
         section.repos.forEach(r => {
-          const a = createEl('a', { href: r.url });
+          const a = createEl('a', { href: r.url, target: '_blank', rel: 'noopener noreferrer' });
           a.textContent = r.name + ' — ' + r.description;
           repoDiv.appendChild(a);
           repoDiv.appendChild(document.createElement('br'));
@@ -127,7 +123,7 @@
   }
 
   /* =========================
-     COUNTDOWN MODULE
+     COUNTDOWN
   ========================= */
   function initCountdown() {
     const releaseDate = new Date('2030-12-31T00:00:00Z').getTime();
@@ -142,7 +138,7 @@
         releaseEl.innerHTML = '🚀 Krynet.ai has launched! 🎉';
         clearInterval(interval);
 
-        // Add "Out Now!" section
+        // Out Now button
         const parent = releaseEl.parentElement;
         const outText = createEl('p', { class: 'out-now-text' });
         outText.textContent = 'Out Now!';
@@ -152,7 +148,6 @@
         parent.appendChild(outButton);
         fadeIn(outText, 0);
         fadeIn(outButton, 0.1);
-
         return;
       }
 
@@ -171,7 +166,6 @@
 
     update();
     const interval = setInterval(update, 1000);
-
     document.addEventListener('visibilitychange', () => {
       if (!document.hidden) update();
     });
@@ -183,7 +177,6 @@
   function initButtons() {
     const buttons = $$('.button');
     if (!buttons.length) return;
-
     buttons.forEach(btn => {
       btn.addEventListener('pointerdown', () => btn.classList.add('pressed'));
       btn.addEventListener('pointerup', () => btn.classList.remove('pressed'));
@@ -196,8 +189,6 @@
   ========================= */
   function initExternalLinks() {
     const links = $$('a[href^="http"]');
-    if (!links.length) return;
-
     links.forEach(link => {
       if (link.hostname !== location.hostname) {
         link.rel = 'noopener noreferrer';

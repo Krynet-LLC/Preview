@@ -1,43 +1,34 @@
 /* ==================================================
-   PRODUCTION SITE SCRIPT - Countdown + Hype
+   PRODUCTION SITE SCRIPT
+   - Countdown with hype text & emojis
+   - Optimized DOM writes
+   - Tab visibility aware
 ================================================== */
+
 (() => {
   'use strict';
 
+  /* =========================
+     UTIL
+  ========================= */
   const $ = (selector, parent = document) => parent.querySelector(selector);
   const $$ = (selector, parent = document) => parent.querySelectorAll(selector);
 
   /* =========================
-     DYNAMIC COUNTDOWN WITH HYPE
+     COUNTDOWN MODULE
   ========================= */
   function initCountdown() {
     const releaseDate = new Date('2030-12-31T00:00:00Z').getTime();
-    const header = $('header.hero');
-    if (!header) return;
-
-    // Countdown container
-    const countdownEl = document.createElement('div');
-    countdownEl.className = 'countdown';
-    const countdownText = document.createElement('div');
-    countdownText.className = 'countdown-text';
-    countdownEl.appendChild(countdownText);
-
-    ['days','hours','minutes','seconds'].forEach(id => {
-      const span = document.createElement('span');
-      span.id = id;
-      span.textContent = '0';
-      countdownEl.appendChild(span);
-      countdownEl.appendChild(document.createTextNode(id[0])); // d,h,m,s
-    });
-    header.appendChild(countdownEl);
+    const releaseEl = $('.release');
+    if (!releaseEl) return;
 
     const update = () => {
       const now = Date.now();
       const diff = releaseDate - now;
 
       if (diff <= 0) {
-        countdownText.textContent = "🎉 It’s here! Krynet.ai is live!";
-        ['days','hours','minutes','seconds'].forEach(id => $(id).textContent = '0');
+        releaseEl.innerHTML = '🚀 Krynet.ai has launched! 🎉';
+        clearInterval(interval);
         return;
       }
 
@@ -46,32 +37,32 @@
       const minutes = Math.floor((diff % 3600000) / 60000);
       const seconds = Math.floor((diff % 60000) / 1000);
 
-      $('#days').textContent = days;
-      $('#hours').textContent = hours;
-      $('#minutes').textContent = minutes;
-      $('#seconds').textContent = seconds;
+      let hype = '';
+      if (days < 7) hype = '🔥 Almost there! ';
+      else if (days < 30) hype = '🚀 Launch is coming! ';
+      else if (days < 365) hype = '⚡ Get ready! ';
 
-      // Dynamic hype text
-      if (days > 365) countdownText.textContent = "🚀 Krynet.ai is launching soon!";
-      else if (days <= 365 && days > 30) countdownText.textContent = `⏳ ${days} days until lift-off!`;
-      else if (days <= 30 && days > 7) countdownText.textContent = `🔥 Almost there! Only ${days} days!`;
-      else if (days <= 7) countdownText.textContent = `⚡ Final countdown! ${days} days, ${hours}h ${minutes}m ${seconds}s!`;
+      releaseEl.innerHTML = `
+        <i class="fas fa-calendar-alt"></i> ${hype}${days}d ${hours}h ${minutes}m ${seconds}s
+      `;
     };
 
-    let interval = setInterval(update, 1000);
-    document.addEventListener('visibilitychange', () => {
-      clearInterval(interval);
-      if (!document.hidden) interval = setInterval(update, 1000);
-    });
+    update(); // initial call
+    const interval = setInterval(update, 1000);
 
-    update();
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden) update();
+    });
   }
 
   /* =========================
      BUTTON INTERACTIONS
   ========================= */
   function initButtons() {
-    $$('.button').forEach(btn => {
+    const buttons = $$('.button');
+    if (!buttons.length) return;
+
+    buttons.forEach(btn => {
       btn.addEventListener('pointerdown', () => btn.classList.add('pressed'));
       btn.addEventListener('pointerup', () => btn.classList.remove('pressed'));
       btn.addEventListener('pointerleave', () => btn.classList.remove('pressed'));
@@ -82,7 +73,10 @@
      EXTERNAL LINK SAFETY
   ========================= */
   function initExternalLinks() {
-    $$('a[href^="http"]').forEach(link => {
+    const links = $$('a[href^="http"]');
+    if (!links.length) return;
+
+    links.forEach(link => {
       if (link.hostname !== location.hostname) {
         link.rel = 'noopener noreferrer';
         link.target = '_blank';

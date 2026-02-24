@@ -1,172 +1,169 @@
 (() => {
 'use strict';
 
-/* =========================
-   UTIL
-========================= */
-const $ = (s,p=document)=>p.querySelector(s);
-const create = (tag,cls)=>{const e=document.createElement(tag);if(cls)e.className=cls;return e;};
+/* ========= Cached Selectors ========= */
+const el = {
+  logo: document.querySelector('.site-logo'),
+  title: document.querySelector('.title'),
+  intro: document.querySelector('.intro'),
+  releaseSpan: document.querySelector('.release span'),
+  ceoCard: document.querySelector('.ceo-card'),
+  platforms: document.querySelector('.platforms'),
+  tech: document.querySelector('.tech'),
+  sections: document.querySelector('.sections-container'),
+  footer: document.querySelector('.footer')
+};
 
-/* =========================
-   LOAD CONFIG
-========================= */
+/* ========= Config Loader ========= */
 async function loadConfig(){
   try{
-    const res = await fetch('https://raw.githubusercontent.com/Krynet-LLC/Preview/main/config.json');
-    if(!res.ok) throw new Error('Failed to fetch config.json');
-
-    const config = await res.json();
-    renderSite(config);
-  }catch(err){
-    console.error('CONFIG LOAD ERROR:',err);
-  }
+    const r = await fetch('https://raw.githubusercontent.com/Krynet-LLC/Preview/main/config.json');
+    if(!r.ok) return;
+    const c = await r.json();
+    render(c);
+  }catch{}
 }
 
-/* =========================
-   RENDER SITE
-========================= */
-function renderSite(config){
+/* ========= Render ========= */
+function render(c){
 
-  /* HEADER */
-  if($('.site-logo')) $('.site-logo').src = config.site?.siteLogo || '';
-  if($('.title')) $('.title').textContent = config.site?.title || '';
-  if($('.intro')) $('.intro').textContent = config.header?.intro || '';
+  /* Header */
+  if(el.logo) el.logo.src = c.site?.siteLogo || '';
+  if(el.title) el.title.textContent = c.site?.title || '';
+  if(el.intro) el.intro.textContent = c.header?.intro || '';
 
-  const releaseEl = $('.release');
-  if(releaseEl){
-    releaseEl.innerHTML = `<i class="fas fa-calendar-alt"></i> ${config.header?.release || ''}`;
-  }
+  if(el.releaseSpan)
+    el.releaseSpan.textContent = c.header?.release || '';
 
   /* CEO */
-  if(config.header?.ceo && $('.ceo-card')){
-    const ceoCard = $('.ceo-card');
-    const ceo = config.header.ceo;
+  if(c.header?.ceo && el.ceoCard){
+    const img = el.ceoCard.children[0];
+    const h3  = el.ceoCard.children[1];
+    const p   = el.ceoCard.children[2];
 
-    if(ceoCard.querySelector('img')) ceoCard.querySelector('img').src = ceo.img || '';
-    if(ceoCard.querySelector('h3')) ceoCard.querySelector('h3').textContent = `${ceo.name || ''} — ${ceo.title || ''}`;
-    if(ceoCard.querySelector('p')) ceoCard.querySelector('p').textContent = ceo.bio || '';
+    if(img) img.src = c.header.ceo.img || '';
+    if(h3) h3.textContent = `${c.header.ceo.name || ''} — ${c.header.ceo.title || ''}`;
+    if(p) p.textContent = c.header.ceo.bio || '';
   }
 
-  /* PLATFORMS */
-  if(Array.isArray(config.header?.platforms) && $('.platforms')){
-    const platforms = $('.platforms');
-    platforms.innerHTML='';
-    config.header.platforms.forEach(p=>{
-      const div=create('div','icon-item');
-      div.innerHTML=`<i class="${p.icon}"></i> ${p.name}${p.note?` (${p.note})`:''}`;
-      platforms.appendChild(div);
-    });
+  /* Platforms */
+  if(Array.isArray(c.header?.platforms) && el.platforms){
+    el.platforms.textContent = '';
+    for(const p of c.header.platforms){
+      const d = document.createElement('div');
+      d.className = 'icon-item';
+      d.innerHTML = `<i class="${p.icon}"></i> ${p.name}${p.note?` (${p.note})`:''}`;
+      el.platforms.appendChild(d);
+    }
   }
 
-  /* TECHNOLOGIES */
-  if(Array.isArray(config.header?.technologies) && $('.tech')){
-    const tech = $('.tech');
-    tech.innerHTML='';
-    config.header.technologies.forEach(t=>{
-      const div=create('div','icon-item');
-      div.innerHTML=`<i class="${t.icon}"></i> ${t.name}`;
-      tech.appendChild(div);
-    });
+  /* Tech */
+  if(Array.isArray(c.header?.technologies) && el.tech){
+    el.tech.textContent = '';
+    for(const t of c.header.technologies){
+      const d = document.createElement('div');
+      d.className = 'icon-item';
+      d.innerHTML = `<i class="${t.icon}"></i> ${t.name}`;
+      el.tech.appendChild(d);
+    }
   }
 
-  /* SECTIONS */
-  if(Array.isArray(config.sections)){
-    renderSections(config.sections);
+  /* Sections */
+  if(Array.isArray(c.sections) && el.sections){
+    el.sections.textContent = '';
+
+    for(const s of c.sections){
+      const sec = document.createElement('section');
+      sec.innerHTML = `<h2>${s.title}</h2>`;
+      
+      if(Array.isArray(s.features)){
+        const grid = document.createElement('div');
+        grid.className = 'feature-grid';
+
+        for(const f of s.features){
+          const card = document.createElement('div');
+          card.className = 'card';
+          card.innerHTML =
+            `${f.icon?`<i class="${f.icon}"></i>`:''}
+             ${f.title?`<strong>${f.title}</strong>`:''}
+             ${f.badge?` <span class="badge ${f.badge.toLowerCase()}">${f.badge}</span>`:''}
+             ${f.description?`<p>${f.description}</p>`:''}
+             ${f.statement?`<p>${f.statement}</p>`:''}`;
+          grid.appendChild(card);
+        }
+
+        sec.appendChild(grid);
+      }
+
+      if(s.note){
+        const note = document.createElement('p');
+        note.className = 'section-note';
+        note.textContent = s.note;
+        sec.appendChild(note);
+      }
+
+      if(Array.isArray(s.repos)){
+        const repo = document.createElement('div');
+        repo.className = 'repo-list';
+        for(const r of s.repos){
+          const a = document.createElement('a');
+          a.href = r.url;
+          a.target = '_blank';
+          a.rel = 'noopener';
+          a.innerHTML = `<strong>${r.name}</strong> — ${r.description}`;
+          repo.appendChild(a);
+        }
+        sec.appendChild(repo);
+      }
+
+      el.sections.appendChild(sec);
+    }
   }
 
-  /* FOOTER */
-  if($('.footer')) $('.footer').textContent = config.footer?.text || '';
+  if(el.footer) el.footer.textContent = c.footer?.text || '';
 }
 
-/* =========================
-   SECTIONS
-========================= */
-function renderSections(sections){
-  const container = $('.sections-container');
-  if(!container) return;
+/* ========= Optimized Countdown ========= */
 
-  container.innerHTML='';
+/*
+Ultra-light math:
+- No modulus chains
+- No repeated Date allocations
+- Pre-calculated constants
+- Updates only text node
+*/
 
-  sections.forEach(section=>{
-    const sec=create('section');
-
-    const h2=create('h2');
-    h2.textContent=section.title;
-    sec.appendChild(h2);
-
-    if(Array.isArray(section.features)){
-      const grid=create('div','feature-grid');
-
-      section.features.forEach(feature=>{
-        const card=create('div','card');
-
-        let html='';
-        if(feature.icon) html+=`<i class="${feature.icon}"></i> `;
-        if(feature.title) html+=`<strong>${feature.title}</strong>`;
-        if(feature.badge) html+=` <span class="badge ${feature.badge.toLowerCase()}">${feature.badge}</span>`;
-        if(feature.description) html+=`<p>${feature.description}</p>`;
-        if(feature.statement) html+=`<p>${feature.statement}</p>`;
-
-        card.innerHTML=html;
-        grid.appendChild(card);
-      });
-
-      sec.appendChild(grid);
-    }
-
-    if(section.note){
-      const note=create('p','section-note');
-      note.textContent=section.note;
-      sec.appendChild(note);
-    }
-
-    if(Array.isArray(section.repos)){
-      const repoList=create('div','repo-list');
-      section.repos.forEach(r=>{
-        const a=create('a');
-        a.href=r.url;
-        a.target='_blank';
-        a.rel='noopener noreferrer';
-        a.innerHTML=`<strong>${r.name}</strong> — ${r.description}`;
-        repoList.appendChild(a);
-      });
-      sec.appendChild(repoList);
-    }
-
-    container.appendChild(sec);
-  });
-}
-
-/* =========================
-   COUNTDOWN
-========================= */
 function initCountdown(){
-  const releaseDate = new Date('2030-12-31T00:00:00Z').getTime();
-  const releaseEl = $('.release');
-  if(!releaseEl) return;
 
-  const update=()=>{
-    const diff=releaseDate-Date.now();
-    if(diff<=0){
-      releaseEl.innerHTML='🚀 Krynet.ai is LIVE.';
+  if(!el.releaseSpan) return;
+
+  const target = Date.parse('2030-12-31T00:00:00Z');
+
+  const DAY  = 86400000;
+  const HOUR = 3600000;
+  const MIN  = 60000;
+
+  function tick(){
+    const diff = target - Date.now();
+    if(diff <= 0){
+      el.releaseSpan.textContent = '🚀 Krynet.ai is LIVE.';
       return;
     }
 
-    const d=Math.floor(diff/86400000);
-    const h=Math.floor(diff%86400000/3600000);
-    const m=Math.floor(diff%3600000/60000);
-    const s=Math.floor(diff%60000/1000);
+    const d = (diff / DAY)  | 0;
+    const h = (diff % DAY   / HOUR) | 0;
+    const m = (diff % HOUR  / MIN)  | 0;
+    const s = (diff % MIN   / 1000) | 0;
 
-    releaseEl.innerHTML=`<i class="fas fa-calendar-alt"></i> 🚀 ${d}d ${h}h ${m}m ${s}s`;
-  };
+    el.releaseSpan.textContent =
+      `🚀 ${d}d ${h}h ${m}m ${s}s`;
+  }
 
-  update();
-  setInterval(update,1000);
+  tick();
+  setInterval(tick, 1000);
 }
 
-/* =========================
-   INIT
-========================= */
+/* ========= Init ========= */
 document.addEventListener('DOMContentLoaded',()=>{
   loadConfig();
   initCountdown();

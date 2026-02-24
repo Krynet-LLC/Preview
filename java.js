@@ -6,8 +6,6 @@
 ========================= */
 const $ = (s,p=document)=>p.querySelector(s);
 const create = (tag,cls)=>{const e=document.createElement(tag);if(cls)e.className=cls;return e;};
-const isURL = v => typeof v === 'string' && /^https?:\/\//i.test(v);
-const isImage = v => isURL(v) && /\.(png|jpg|jpeg|gif|webp|svg)/i.test(v);
 
 /* =========================
    LOAD CONFIG
@@ -15,85 +13,111 @@ const isImage = v => isURL(v) && /\.(png|jpg|jpeg|gif|webp|svg)/i.test(v);
 async function loadConfig(){
   const res = await fetch('https://raw.githubusercontent.com/Krynet-LLC/Preview/main/config.json');
   const config = await res.json();
-  renderAll(config);
+  renderSite(config);
 }
 
 /* =========================
-   RECURSIVE RENDER
+   RENDER SITE
 ========================= */
-function renderAll(data){
+function renderSite(config){
+
+  /* HEADER */
+  $('.site-logo').src = config.site.siteLogo;
+  $('.title').textContent = config.site.title;
+  $('.intro').textContent = config.header.intro;
+  $('.release span').textContent = config.header.release;
+
+  /* CEO */
+  const ceo = config.header.ceo;
+  const ceoCard = $('.ceo-card');
+  ceoCard.querySelector('img').src = ceo.img;
+  ceoCard.querySelector('h3').textContent = `${ceo.name} — ${ceo.title}`;
+  ceoCard.querySelector('p').textContent = ceo.bio;
+
+  /* PLATFORMS */
+  const platforms = $('.platforms');
+  platforms.innerHTML = '';
+  config.header.platforms.forEach(p=>{
+    const div=create('div','icon-item');
+    div.innerHTML=`<i class="${p.icon}"></i> ${p.name}${p.note?` (${p.note})`:''}`;
+    platforms.appendChild(div);
+  });
+
+  /* TECHNOLOGIES */
+  const tech = $('.tech');
+  tech.innerHTML='';
+  config.header.technologies.forEach(t=>{
+    const div=create('div','icon-item');
+    div.innerHTML=`<i class="${t.icon}"></i> ${t.name}`;
+    tech.appendChild(div);
+  });
+
+  /* DYNAMIC SECTIONS */
+  renderSections(config.sections);
+
+  /* FOOTER */
+  $('.footer').textContent = config.footer.text;
+}
+
+/* =========================
+   SECTIONS (CLEAN STRUCTURE)
+========================= */
+function renderSections(sections){
   const container = $('.sections-container');
-  container.innerHTML = '';
-  container.appendChild(renderNode(data));
-}
+  container.innerHTML='';
 
-/* =========================
-   NODE RENDERER (CORE MAGIC)
-========================= */
-function renderNode(value, key=null){
+  sections.forEach(section=>{
+    const sec=create('section');
+    
+    // Section Title
+    const h2=create('h2');
+    h2.textContent=section.title;
+    sec.appendChild(h2);
 
-  // Wrapper
-  const wrapper = create('div','json-block');
+    // Features
+    if(section.features){
+      const grid=create('div','feature-grid');
 
-  // Title
-  if(key){
-    const title = create('h2');
-    title.textContent = formatKey(key);
-    wrapper.appendChild(title);
-  }
+      section.features.forEach(feature=>{
+        const card=create('div','card');
 
-  // STRING / NUMBER
-  if(typeof value === 'string' || typeof value === 'number'){
-    if(isImage(value)){
-      const img = create('img');
-      img.src = value;
-      img.style.maxWidth='200px';
-      wrapper.appendChild(img);
+        let html='';
+        if(feature.icon) html+=`<i class="${feature.icon}"></i> `;
+        if(feature.title) html+=`<strong>${feature.title}</strong>`;
+        if(feature.badge) html+=` <span class="badge ${feature.badge.toLowerCase()}">${feature.badge}</span>`;
+        if(feature.description) html+=`<p>${feature.description}</p>`;
+        if(feature.statement) html+=`<p>${feature.statement}</p>`;
+
+        card.innerHTML=html;
+        grid.appendChild(card);
+      });
+
+      sec.appendChild(grid);
     }
-    else if(isURL(value)){
-      const a = create('a');
-      a.href = value;
-      a.textContent = value;
-      a.target='_blank';
-      wrapper.appendChild(a);
+
+    // Note
+    if(section.note){
+      const note=create('p','section-note');
+      note.textContent=section.note;
+      sec.appendChild(note);
     }
-    else{
-      const p = create('p');
-      p.textContent = value;
-      wrapper.appendChild(p);
+
+    // Repos
+    if(section.repos){
+      const repoList=create('div','repo-list');
+      section.repos.forEach(r=>{
+        const a=create('a');
+        a.href=r.url;
+        a.target='_blank';
+        a.rel='noopener noreferrer';
+        a.innerHTML=`<strong>${r.name}</strong> — ${r.description}`;
+        repoList.appendChild(a);
+      });
+      sec.appendChild(repoList);
     }
-    return wrapper;
-  }
 
-  // ARRAY
-  if(Array.isArray(value)){
-    const grid = create('div','json-array');
-    value.forEach((item,i)=>{
-      grid.appendChild(renderNode(item, `${key ? key+' ' : ''}${i+1}`));
-    });
-    wrapper.appendChild(grid);
-    return wrapper;
-  }
-
-  // OBJECT
-  if(typeof value === 'object' && value !== null){
-    Object.entries(value).forEach(([k,v])=>{
-      wrapper.appendChild(renderNode(v,k));
-    });
-    return wrapper;
-  }
-
-  return wrapper;
-}
-
-/* =========================
-   FORMAT KEY NAMES
-========================= */
-function formatKey(k){
-  return k
-    .replace(/([A-Z])/g,' $1')
-    .replace(/_/g,' ')
-    .replace(/\b\w/g,c=>c.toUpperCase());
+    container.appendChild(sec);
+  });
 }
 
 /* =========================
@@ -115,7 +139,7 @@ function initCountdown(){
     const m=Math.floor(diff%3600000/60000);
     const s=Math.floor(diff%60000/1000);
 
-    releaseEl.innerHTML=`🚀 ${d}d ${h}h ${m}m ${s}s`;
+    releaseEl.innerHTML=`<i class="fas fa-calendar-alt"></i> 🚀 ${d}d ${h}h ${m}m ${s}s`;
   };
 
   update();

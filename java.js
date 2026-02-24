@@ -11,9 +11,15 @@ const create = (tag,cls)=>{const e=document.createElement(tag);if(cls)e.classNam
    LOAD CONFIG
 ========================= */
 async function loadConfig(){
-  const res = await fetch('https://raw.githubusercontent.com/Krynet-LLC/Preview/main/config.json');
-  const config = await res.json();
-  renderSite(config);
+  try{
+    const res = await fetch('https://raw.githubusercontent.com/Krynet-LLC/Preview/main/config.json');
+    if(!res.ok) throw new Error('Failed to fetch config.json');
+
+    const config = await res.json();
+    renderSite(config);
+  }catch(err){
+    console.error('CONFIG LOAD ERROR:',err);
+  }
 }
 
 /* =========================
@@ -22,60 +28,73 @@ async function loadConfig(){
 function renderSite(config){
 
   /* HEADER */
-  $('.site-logo').src = config.site.siteLogo;
-  $('.title').textContent = config.site.title;
-  $('.intro').textContent = config.header.intro;
-  $('.release span').textContent = config.header.release;
+  if($('.site-logo')) $('.site-logo').src = config.site?.siteLogo || '';
+  if($('.title')) $('.title').textContent = config.site?.title || '';
+  if($('.intro')) $('.intro').textContent = config.header?.intro || '';
+
+  const releaseEl = $('.release');
+  if(releaseEl){
+    releaseEl.innerHTML = `<i class="fas fa-calendar-alt"></i> ${config.header?.release || ''}`;
+  }
 
   /* CEO */
-  const ceo = config.header.ceo;
-  const ceoCard = $('.ceo-card');
-  ceoCard.querySelector('img').src = ceo.img;
-  ceoCard.querySelector('h3').textContent = `${ceo.name} — ${ceo.title}`;
-  ceoCard.querySelector('p').textContent = ceo.bio;
+  if(config.header?.ceo && $('.ceo-card')){
+    const ceoCard = $('.ceo-card');
+    const ceo = config.header.ceo;
+
+    if(ceoCard.querySelector('img')) ceoCard.querySelector('img').src = ceo.img || '';
+    if(ceoCard.querySelector('h3')) ceoCard.querySelector('h3').textContent = `${ceo.name || ''} — ${ceo.title || ''}`;
+    if(ceoCard.querySelector('p')) ceoCard.querySelector('p').textContent = ceo.bio || '';
+  }
 
   /* PLATFORMS */
-  const platforms = $('.platforms');
-  platforms.innerHTML = '';
-  config.header.platforms.forEach(p=>{
-    const div=create('div','icon-item');
-    div.innerHTML=`<i class="${p.icon}"></i> ${p.name}${p.note?` (${p.note})`:''}`;
-    platforms.appendChild(div);
-  });
+  if(Array.isArray(config.header?.platforms) && $('.platforms')){
+    const platforms = $('.platforms');
+    platforms.innerHTML='';
+    config.header.platforms.forEach(p=>{
+      const div=create('div','icon-item');
+      div.innerHTML=`<i class="${p.icon}"></i> ${p.name}${p.note?` (${p.note})`:''}`;
+      platforms.appendChild(div);
+    });
+  }
 
   /* TECHNOLOGIES */
-  const tech = $('.tech');
-  tech.innerHTML='';
-  config.header.technologies.forEach(t=>{
-    const div=create('div','icon-item');
-    div.innerHTML=`<i class="${t.icon}"></i> ${t.name}`;
-    tech.appendChild(div);
-  });
+  if(Array.isArray(config.header?.technologies) && $('.tech')){
+    const tech = $('.tech');
+    tech.innerHTML='';
+    config.header.technologies.forEach(t=>{
+      const div=create('div','icon-item');
+      div.innerHTML=`<i class="${t.icon}"></i> ${t.name}`;
+      tech.appendChild(div);
+    });
+  }
 
-  /* DYNAMIC SECTIONS */
-  renderSections(config.sections);
+  /* SECTIONS */
+  if(Array.isArray(config.sections)){
+    renderSections(config.sections);
+  }
 
   /* FOOTER */
-  $('.footer').textContent = config.footer.text;
+  if($('.footer')) $('.footer').textContent = config.footer?.text || '';
 }
 
 /* =========================
-   SECTIONS (CLEAN STRUCTURE)
+   SECTIONS
 ========================= */
 function renderSections(sections){
   const container = $('.sections-container');
+  if(!container) return;
+
   container.innerHTML='';
 
   sections.forEach(section=>{
     const sec=create('section');
-    
-    // Section Title
+
     const h2=create('h2');
     h2.textContent=section.title;
     sec.appendChild(h2);
 
-    // Features
-    if(section.features){
+    if(Array.isArray(section.features)){
       const grid=create('div','feature-grid');
 
       section.features.forEach(feature=>{
@@ -95,15 +114,13 @@ function renderSections(sections){
       sec.appendChild(grid);
     }
 
-    // Note
     if(section.note){
       const note=create('p','section-note');
       note.textContent=section.note;
       sec.appendChild(note);
     }
 
-    // Repos
-    if(section.repos){
+    if(Array.isArray(section.repos)){
       const repoList=create('div','repo-list');
       section.repos.forEach(r=>{
         const a=create('a');
@@ -134,6 +151,7 @@ function initCountdown(){
       releaseEl.innerHTML='🚀 Krynet.ai is LIVE.';
       return;
     }
+
     const d=Math.floor(diff/86400000);
     const h=Math.floor(diff%86400000/3600000);
     const m=Math.floor(diff%3600000/60000);

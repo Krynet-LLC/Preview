@@ -1,125 +1,164 @@
-/* =========================
-   GLOBAL
-========================= */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ========= GLOBAL ========= */
+
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
+  @apply box-border;
 }
 
 body {
-  margin: 0;
-  font-family: 'Orbitron', sans-serif;
-  background: linear-gradient(135deg, #000000, #2a004f 50%, #6b0000);
-  color: #ffffff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  padding: 2rem;
-  text-align: center;
+  @apply m-0 min-h-screen bg-black text-white font-['Orbitron'] antialiased;
+  background: radial-gradient(circle at top, #1a0033, #000000 60%);
 }
 
-/* =========================
-   CONTAINER
-========================= */
-.container {
-  max-width: 800px;
-  width: 100%;
+/* ========= HERO ========= */
+
+.hero {
+  @apply text-center px-6 pt-28 pb-20 border-b border-white/10;
 }
 
-/* =========================
-   TYPOGRAPHY
-========================= */
-h1 {
-  font-size: clamp(2rem, 5vw, 3rem);
-  color: #ff4d4d;
-  margin-bottom: 1rem;
-  text-shadow: 0 0 15px rgba(255, 77, 77, 0.6);
+.site-logo {
+  @apply mx-auto mb-6 w-28 h-auto opacity-90;
 }
 
-p {
-  font-size: 1.1rem;
-  color: #d8b4fe;
-  margin-bottom: 2rem;
-  line-height: 1.6;
+.title {
+  @apply text-[clamp(2.5rem,5vw,4rem)] font-bold text-red-500 mb-6;
+  text-shadow: 0 0 20px rgba(255, 0, 0, 0.6);
 }
 
-/* =========================
-   BUTTONS
-========================= */
-.buttons {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+.intro {
+  @apply max-w-2xl mx-auto text-lg text-purple-300 leading-relaxed mb-6;
 }
 
-.button {
-  padding: 1rem 2rem;
-  border-radius: 12px;
-  font-size: 1rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.25s ease;
-  border: none;
+.release {
+  @apply text-sm text-white/60 tracking-widest;
 }
 
-/* Primary */
-.install {
-  background: #8b0000;
-  color: #ffffff;
-  box-shadow: 0 0 12px rgba(139, 0, 0, 0.6);
+/* ========= CEO CARD ========= */
+
+.ceo-card {
+  @apply mt-12 max-w-xl mx-auto bg-black/60 border border-purple-800/40 rounded-2xl p-8 backdrop-blur-md text-center;
+  box-shadow: 0 0 30px rgba(75, 0, 130, 0.4);
 }
 
-.install:hover {
-  background: #a10000;
-  transform: translateY(-3px);
-  box-shadow: 0 0 20px rgba(161, 0, 0, 0.8);
+.ceo-card img {
+  @apply w-24 h-24 rounded-full object-cover mx-auto mb-4 border border-red-600/40;
 }
 
-/* Secondary */
-.web {
-  background: transparent;
-  color: #d8b4fe;
-  border: 2px solid #d8b4fe;
+.ceo-card h3 {
+  @apply text-lg font-semibold mb-2;
 }
 
-.web:hover {
-  background: #4b0082;
-  transform: translateY(-3px);
-  box-shadow: 0 0 15px rgba(75, 0, 130, 0.6);
+.ceo-card p {
+  @apply text-sm text-purple-300 leading-relaxed;
 }
 
-/* =========================
-   INFO BOX
-========================= */
-.info {
-  margin-top: 3rem;
-  padding: 1.5rem;
-  background: rgba(0, 0, 0, 0.6);
-  border: 1px solid #6b21a8;
-  border-radius: 12px;
-  color: #e9d5ff;
-  font-size: 0.95rem;
+/* ========= ICON GRID ========= */
+
+.icon-grid {
+  @apply grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8 max-w-5xl mx-auto mt-10;
+}
+
+.icon-item {
+  @apply flex flex-col items-center justify-center gap-2 bg-black/50 border border-white/10 rounded-xl p-6 text-sm transition-all duration-300;
+}
+
+.icon-item i {
+  @apply text-red-500 text-2xl;
+}
+
+.icon-item:hover {
+  @apply -translate-y-1 border-purple-500/40;
+  box-shadow: 0 0 20px rgba(139, 0, 139, 0.4);
+}
+
+/* ========= SECTIONS ========= */
+
+.sections-container {
+  @apply px-6 py-20 space-y-20;
+}
+
+.sections-container section {
+  @apply max-w-6xl mx-auto text-center;
+}
+
+.sections-container h2 {
+  @apply text-2xl font-bold text-red-500 mb-12 tracking-wider;
+}
+
+/* ========= FEATURE GRID ========= */
+
+.feature-grid {
+  @apply grid md:grid-cols-3 gap-10;
+}
+
+.card {
+  @apply bg-black/60 border border-purple-900/40 rounded-xl p-8 text-left transition-all duration-300;
   backdrop-filter: blur(6px);
 }
-.countdown {
-  margin-top: 1rem;
-  font-size: 1.3rem;
-  font-weight: bold;
-  color: #00fff7;
-  text-shadow: 0 0 6px #ff0080;
-  display: inline-block;
-  gap: 0.4rem;
+
+.card i {
+  @apply text-red-500 text-xl mb-3;
 }
-.countdown span {
-  min-width: 2ch;
-  display: inline-block;
-  text-align: center;
+
+.card strong {
+  @apply block text-lg mb-2;
 }
-.countdown-text {
-  margin-bottom: 0.6rem;
-  font-size: 1.2rem;
-  color: #ff4d4d;
-  text-shadow: 0 0 5px #ff0080;
+
+.card p {
+  @apply text-sm text-purple-300 leading-relaxed;
+}
+
+.card:hover {
+  @apply -translate-y-1;
+  box-shadow: 0 0 25px rgba(75, 0, 130, 0.5);
+}
+
+/* ========= BADGES ========= */
+
+.badge {
+  @apply text-xs px-2 py-1 rounded-full ml-2;
+}
+
+.badge.alpha {
+  @apply bg-red-900 text-red-400;
+}
+
+.badge.beta {
+  @apply bg-purple-900 text-purple-300;
+}
+
+.badge.stable {
+  @apply bg-green-900 text-green-400;
+}
+
+/* ========= REPO LIST ========= */
+
+.repo-list {
+  @apply mt-8 flex flex-col gap-4;
+}
+
+.repo-list a {
+  @apply block bg-black/50 border border-white/10 rounded-lg p-4 text-sm transition-all duration-300;
+}
+
+.repo-list a:hover {
+  @apply border-purple-500/40;
+  box-shadow: 0 0 15px rgba(75, 0, 130, 0.4);
+}
+
+/* ========= SECTION NOTE ========= */
+
+.section-note {
+  @apply mt-8 text-sm text-white/50;
+}
+
+/* ========= FOOTER ========= */
+
+.footer {
+  @apply border-t border-white/10 py-8 text-center text-sm text-white/40;
 }

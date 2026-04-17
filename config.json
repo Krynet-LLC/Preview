@@ -1,6 +1,6 @@
 {
   "site": {
-    "title": "Krynet.ai — 2030 Preview",
+    "title": "Krynet.ai — What is Krynet.ai?",
     "description": "Sweden-based, ultra-private, lightweight, and efficient instant messaging, VOIP, and online communication platform. Mixed-source software, built for users who demand unmatched privacy and security.",
     "releaseYear": 2030,
     "country": "Sweden",
@@ -124,7 +124,6 @@
       "title": "Ownership & Partners",
       "features": [
         { "title": "BLACK/0, Inc (Iceland) – Nonprofit, privacy-focused", "icon": "fa-solid fa-flag" },
-        { "title": "Bloodware, Inc (UAE / Afghanistan) – Privacy & development partner", "icon": "fa-solid fa-flag" },
         { "title": "Krynet, LLC (Sweden) – Main owner", "icon": "fa-solid fa-flag" },
         { "title": "Dead Lantern Games, LLC (Taiwan) – Game development", "icon": "fa-solid fa-flag" },
         { "title": "ARZA, LLC (Taiwan) – Support & development partner", "icon": "fa-solid fa-flag" },

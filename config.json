@@ -31,7 +31,7 @@
     ],
     "technologies": [
       { "name": "C++", "icon": "fas fa-code" },
-      { "name": "C#", "icon": "fas fa-code" },
+      { "name": "C", "icon": "fas fa-code" },
       { "name": "Lua", "icon": "fas fa-code" },
       { "name": "Rust", "icon": "fas fa-fire" },
       { "name": "JavaScript", "icon": "fab fa-js" },

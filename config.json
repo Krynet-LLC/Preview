@@ -4,7 +4,6 @@
     "description": "Sweden-based, ultra-private, lightweight, and efficient instant messaging, VOIP, and online communication platform. Mixed-source software, built for users who demand unmatched privacy and security.",
     "releaseYear": 2030,
     "country": "Sweden",
-    "privacy_standards": ["GDPR", "Swiss DPA", "Icelandic Privacy Act"],
     "fonts": [
       "https://fonts.bunny.net/css?family=orbitron:400,700&display=swap"
     ],
@@ -32,11 +31,17 @@
     ],
     "technologies": [
       { "name": "C++", "icon": "fa-solid fa-code" },
-      { "name": "Rust", "icon": "fa-solid fa-bolt-lightning" },
+      { "name": "C", "icon": "fa-solid fa-code" },
+      { "name": "Rust", "icon": "fa-solid fa-fire" },
+      { "name": "JavaScript", "icon": "fa-brands fa-js" },
+      { "name": "JS replacement.....", "icon": "fa-brands fa-js" },
       { "name": "TypeScript", "icon": "fa-solid fa-code" },
+      { "name": "PHP", "icon": "fa-brands fa-php" },
+      { "name": "HTML", "icon": "fa-brands fa-html5" },
       { "name": "TailwindCSS", "icon": "fa-solid fa-file-code" },
       { "name": "Python", "icon": "fa-brands fa-python" },
-      { "name": "PostgreSQL", "icon": "fa-solid fa-database" },
+      { "name": "SQL", "icon": "fa-solid fa-database" },
+      { "name": "NoSQL", "icon": "fa-solid fa-server" },
       { "name": "Sciter Engine", "icon": "fa-solid fa-cube" }
     ]
   },
@@ -47,8 +52,8 @@
     "Decentralized architecture for maximum privacy",
     "KrySearch with anonymized browsing included",
     "Mixed-source innovation: open where it matters, proprietary where needed",
-    "Supports multiple payment options, including Monero (XMR) and Bitcoin (BTC)",
-    "Hardened against metadata harvesting and traffic analysis",
+    "Supports multiple payment options, including cryptocurrency",
+    "Supports local communities, education, environment, and emergency relief voluntarily",
     "Partners with international privacy organizations like the EFF"
   ],
   "sections": [
@@ -56,63 +61,143 @@
       "title": "Core Platform",
       "features": [
         { "title": "Hybrid open-source foundation", "icon": "fa-solid fa-code-branch", "badge": "CORE" },
-        { "title": "Privacy-hardened cloud via CoreWeave", "icon": "fa-solid fa-cloud", "badge": "CORE" },
+        { "title": "Cloud infrastructure via CoreWeave", "icon": "fa-solid fa-cloud", "badge": "CORE" },
         { "title": "Ultra-fast API communication", "icon": "fa-solid fa-rocket" },
+        { "title": "Next-gen graphics stack", "icon": "fa-solid fa-tv", "badge": "CORE" },
         { "title": "Signal Protocol & multi-layer cryptography", "icon": "fa-solid fa-shield-halved", "badge": "SEC" },
         { "title": "Decentralized architecture", "icon": "fa-solid fa-network-wired", "badge": "SEC" },
-        { "title": "WebAuthn / Passkeys authentication (No SMS)", "icon": "fa-solid fa-key", "badge": "SEC" }
+        { "title": "WebAuthn / Passkeys authentication (No SMS)", "icon": "fa-solid fa-key", "badge": "SEC" },
+        { "title": "Modding, plugin, app, and bot support", "icon": "fa-solid fa-puzzle-piece" }
       ]
     },
     {
       "title": "Privacy & Security",
       "features": [
-        { "title": "Anonymous accounts (Zero PII required)", "icon": "fa-solid fa-user-secret" },
-        { "title": "E2EE for all media types", "icon": "fa-solid fa-comment-dots", "badge": "SEC" },
-        { "title": "TPM 2.0 & Hardware Security Module support", "icon": "fa-solid fa-microchip", "badge": "SEC" },
-        { "title": "KrySearch: Routed through Quad9 & TrackMeNot", "icon": "fa-solid fa-magnifying-glass", "badge": "SEC" },
-        { "title": "Native AdGuard & DeArrow integration", "icon": "fa-solid fa-shield-check" }
+        { "title": "Anonymous accounts for total discretion", "icon": "fa-solid fa-user-secret" },
+        { "title": "End-to-end encrypted messaging, voice & group chats", "icon": "fa-solid fa-comment-dots", "badge": "SEC" },
+        { "title": "Passwordless login and MFA with hardware keys", "icon": "fa-solid fa-lock", "badge": "SEC" },
+        { "title": "TPM (Trusted Platform Module) support for device-level security", "icon": "fa-solid fa-microchip", "badge": "SEC" },
+        { "title": "Encrypted search with KrySearch, bundled with Adnauseam & uBlock", "icon": "fa-solid fa-magnifying-glass", "badge": "SEC" },
+        { "title": "TrackMeNot and Quad9 DNS routed through our secure cloud", "icon": "fa-solid fa-shield-virus", "badge": "SEC" },
+        { "title": "AdGuard, DeArrow & YouTube Adblock support", "icon": "fa-solid fa-shield-check" }
+      ]
+    },
+    {
+      "title": "Web & Media Integrations",
+      "features": [
+        { "title": "Invidious & Piped support for YouTube", "icon": "fa-solid fa-video" },
+        { "title": "SponsorBlock integration", "icon": "fa-solid fa-handshake" },
+        { "title": "Watch Together: sync YouTube sessions with friends", "icon": "fa-solid fa-users" },
+        { "title": "Embed content support", "icon": "fa-solid fa-code" },
+        { "title": "Markdown & translation support", "icon": "fa-solid fa-file-lines" }
       ]
     },
     {
       "title": "Economy & Monetization",
       "features": [
-        { "title": "Privacy-Coins & Traditional Gateways", "icon": "fa-solid fa-wallet" },
+        { "title": "Stripe, Apple Pay, Google Pay, and Cryptocurrency", "icon": "fa-solid fa-credit-card" },
         { "title": "UGC earnings with intuitive dashboards", "icon": "fa-solid fa-coins", "badge": "UGC" },
-        { "title": "Krynet Premium: No-tracking subscription model", "icon": "fa-solid fa-gem", "badge": "PREM" }
+        { "title": "Premium perks for power users", "icon": "fa-solid fa-rocket", "badge": "PREM" }
       ]
     },
     {
       "title": "License / Source Model",
       "features": [
         {
-          "title": "Core Krynet.ai App — Proprietary License",
-          "icon": "fa-solid fa-lock",
-          "description": "Security-hardened core and backend logic are proprietary to prevent exploitation and maintain integrity."
+          "title": "Core Krynet.ai app — Proprietary Krynet License",
+          "icon": "fa-solid fa-shield-halved",
+          "description": "All security, encryption, and safety features are proprietary to Krynet. Source is closed for core communication and backend functionality."
         },
         {
-          "title": "Frontend Tools & Plugins — GPL 3.0",
-          "icon": "fa-solid fa-code-merge",
-          "description": "User-facing components and community plugins are fully open source to ensure transparency."
+          "title": "Frontend-only tools & safe plugins — GPL 3.0",
+          "icon": "fa-solid fa-code-branch",
+          "description": "Components that do not communicate with Krynet servers or expose sensitive keys are fully open source under GPL 3.0."
         },
         {
-          "title": "LibreJS & FSDG Compliance",
-          "icon": "fa-solid fa-hand-peace",
-          "description": "Fully compatible with LibreJS, ensuring only freedom-respecting code executes in your browser."
+          "title": "LibreJS compatible",
+          "icon": "fa-brands fa-free-code-camp",
+          "description": "Krynet.ai is fully compatible with LibreJS, ensuring freedom-respecting JS execution for users."
         }
       ]
     },
     {
-      "title": "Voluntary Impact",
+      "title": "Ownership & Partners",
       "features": [
-        { "title": "Local Community Support", "icon": "fa-solid fa-people-group" },
-        { "title": "STEM & Privacy Education Scholarships", "icon": "fa-solid fa-graduation-cap" },
-        { "title": "Environmental & Renewable Initiatives", "icon": "fa-solid fa-seedling" },
-        { "title": "Emergency Disaster Relief", "icon": "fa-solid fa-kit-medical" }
+        { "title": "BLACK/0, Inc (Iceland) – Nonprofit, privacy-focused", "icon": "fa-solid fa-flag" },
+        { "title": "Bloodware, Inc (UAE / Afghanistan) – Privacy & development partner", "icon": "fa-solid fa-flag" },
+        { "title": "Krynet, LLC (Sweden) – Main owner", "icon": "fa-solid fa-flag" },
+        { "title": "Dead Lantern Games, LLC (Taiwan) – Game development", "icon": "fa-solid fa-flag" },
+        { "title": "ARZA, LLC (Taiwan) – Support & development partner", "icon": "fa-solid fa-flag" },
+        { "title": "Velxy Studios, LLC (Dubai) – Media & event partner", "icon": "fa-solid fa-flag" }
+      ]
+    },
+    {
+      "title": "Voluntary Impact & Community Support",
+      "features": [
+        { "title": "Support for Local Communities", "icon": "fa-solid fa-hands-holding-child" },
+        { "title": "Support for Education & Skills", "icon": "fa-solid fa-graduation-cap" },
+        { "title": "Support for Environment", "icon": "fa-solid fa-leaf" },
+        { "title": "Support for Emergency Relief", "icon": "fa-solid fa-truck-medical" },
+        { "title": "Supports open source software and privacy advocacy globally", "icon": "fa-solid fa-globe" },
+        { "title": "Partners with EFF", "icon": "fa-solid fa-user-shield" },
+        { "title": "Complies with GDPR, Icelandic, Swedish, and Swiss privacy laws", "icon": "fa-solid fa-gavel" }
       ],
-      "note": "Krynet operates these programs voluntarily to build a better future, not for PR or tax avoidance."
+      "note": "Krynet does this voluntarily, because we believe in it, not because we are obligated."
+    },
+    {
+      "title": "Downloads & Repository",
+      "features": [
+        {
+          "title": "Official Repository",
+          "icon": "fa-solid fa-code-branch",
+          "description": "Access raw files (.apk, .ipa, .deb, etc.) directly from our GitHub/GitLab repo for transparency and security."
+        },
+        {
+          "title": "Alternative Installers",
+          "icon": "fa-solid fa-download",
+          "description": "Available via F-Droid, AltStore, and web installer at krynet.ai/web. Not distributed on Google Play or Apple App Store for maximum privacy."
+        }
+      ]
+    },
+    {
+      "title": "Subscriptions & Plans",
+      "features": [
+        {
+          "title": "Krynet Premium",
+          "icon": "fa-solid fa-gem",
+          "description": "Consumer-focused plan (like Discord Nitro). Offers premium perks but does not include API or developer access."
+        },
+        {
+          "title": "Krynet Enterprise",
+          "icon": "fa-solid fa-building",
+          "description": "Includes all Premium perks + Developer access. Integrate Krynet VC/Text chat into your games or applications via Unreal Engine 5+, CryEngine, and more."
+        }
+      ]
+    },
+    {
+      "title": "Open Source & Privacy Philosophy",
+      "features": [
+        {
+          "title": "FOSS Support & Recommendations",
+          "icon": "fa-solid fa-heart",
+          "statement": "We support open source, we love them, feel free to donate to them. Keep FOSS/Libre-based software alive to fight tracking, data selling, spyware, and corporate or government surveillance. We support Tor, Proton, NordVPN, Signal, Librewolf and more."
+        }
+      ],
+      "repos": [
+        {
+          "name": "Vaporware-XE-Lite",
+          "url": "https://github.com/VaporwareXE/Vaporware-XE-Lite",
+          "description": "A curated directory of security and privacy tools with a simple PowerShell menu."
+        },
+        {
+          "name": "LibreAlt",
+          "url": "https://github.com/LibreWar/librealt",
+          "description": "Open source alternatives to closed source applications."
+        }
+      ]
     }
   ],
   "footer": {
-    "text": "Krynet.ai © 2030 — Swedish-based, ultra-private, lightweight platform. Hosted on privacy-first infrastructure. All rights reserved. Zero logs, zero backdoors."
+    "text": "Krynet.ai © 2030 — Swedish-based, ultra-private, lightweight, mixed-source instant messaging & VOIP platform. Built for privacy-first users."
   }
 }

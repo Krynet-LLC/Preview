@@ -6,27 +6,24 @@
   <meta name="description" content="Krynet.ai — Privacy-first instant messaging platform. Official release.">
   <title>Krynet.ai — Official Launch</title>
 
-  <!-- Android Decision Banner -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' keepandroidopen.org; style-src 'self' 'unsafe-inline' fonts.bunny.net cdn.jsdelivr.net; font-src fonts.bunny.net cdn.jsdelivr.net; img-src 'self' github.com raw.githubusercontent.com data:;">
+  <meta name="referrer" content="no-referrer">
+  <meta name="robots" content="noindex, nofollow">
+
   <script defer src="https://keepandroidopen.org/banner.js"></script>
 
-  <!-- Orbitron -->
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.bunny.net">
+  <link href="https://fonts.bunny.net/css?family=orbitron:400,600,700&display=swap" rel="stylesheet">
 
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
 
-  <!-- Styles -->
   <link rel="stylesheet" href="styles.css">
 
-  <!-- JS -->
   <script src="java.js" defer></script>
-
-  <meta name="robots" content="noindex, nofollow">
 </head>
 
 <body>
 
-  <!-- ===== NAVBAR ===== -->
   <nav class="navbar">
     <div class="nav-inner">
       <div class="brand">
@@ -38,49 +35,51 @@
     </div>
   </nav>
 
-  <!-- ===== HERO ===== -->
   <header class="hero">
-
-    <img class="site-logo" src="" alt="Krynet.ai Logo">
+    <img class="site-logo" src="" alt="Krynet.ai Logo" loading="eager">
 
     <h1 class="title"></h1>
 
     <p class="intro"></p>
 
-    <p class="release">
-      <i class="fas fa-calendar-alt"></i>
-      <span></span>
-    </p>
-
+    <div class="release-container">
+      <p class="release">
+        <i class="fa-solid fa-calendar-check"></i>
+        <span></span>
+      </p>
+    </div>
   </header>
 
-  <!-- ===== CEO MESSAGE ===== -->
   <section class="ceo-section">
     <div class="ceo-card">
-      <img src="" alt="Krynet CEO">
-      <h3></h3>
-      <p></p>
+      <img src="" alt="Krynet CEO" id="ceo-img">
+      <div class="ceo-info">
+        <h3 id="ceo-name"></h3>
+        <p id="ceo-bio"></p>
+      </div>
     </div>
   </section>
-  <!-- ===== PLATFORMS ===== -->
+
   <section class="platform-section">
-    <h2>Platforms</h2>
+    <h2>Available Platforms</h2>
     <div class="icon-grid platforms"></div>
   </section>
 
-  <!-- ===== TECHNOLOGIES ===== -->
   <section class="tech-section">
-    <h2>Technologies</h2>
+    <h2>Built With</h2>
     <div class="icon-grid tech"></div>
   </section>
 
-  <!-- ===== DYNAMIC SECTIONS ===== -->
   <main>
-    <div class="sections-container"></div>
+    <div class="sections-container">
+      </div>
   </main>
 
-  <!-- ===== FOOTER ===== -->
-  <footer class="footer"></footer>
+  <footer class="footer">
+    <div class="footer-content">
+      <p id="footer-text"></p>
+    </div>
+  </footer>
 
 </body>
 </html>

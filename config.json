@@ -37,6 +37,8 @@
       { "name": "JS replacement.....", "icon": "fab fa-js" },
       { "name": "TypeScript", "icon": "fas fa-code" },
       { "name": "PHP", "icon": "fas fa-php" },
+      { "name": "HTML", "icon": "fas fa-html" },
+      { "name": "TailwindCSS", "icon": "fas fa-css" },
       { "name": "Python", "icon": "fab fa-python" },
       { "name": "SQL", "icon": "fas fa-database" },
       { "name": "NoSQL", "icon": "fas fa-server" },

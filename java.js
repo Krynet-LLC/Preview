@@ -23,7 +23,6 @@
   function createIconElement(iconClass, fallbackClass = 'fa-solid fa-square') {
     const icon = document.createElement('i');
     if (typeof iconClass === 'string' && iconClass.trim()) {
-      // Clean string variants into safe iterable class structures
       const classes = iconClass.split(/\s+/).filter(Boolean);
       icon.classList.add(...classes);
     } else {
@@ -71,7 +70,7 @@
 
     // 3. Supported Distributions Grid Framework
     if (el.platformsGrid) {
-      el.platformsGrid.textContent = ''; // Performance-optimized clear routing
+      el.platformsGrid.textContent = '';
       if (Array.isArray(data.header?.platforms)) {
         data.header.platforms.forEach(p => {
           const itemDiv = document.createElement('div');
@@ -178,8 +177,8 @@
    * Initializes high-precision release target tracking coordinates
    */
   function initCountdown() {
-    // Standardized global alignment target matching production 2026 configurations
-    const target = Date.parse('2026-12-31T00:00:00Z');
+    // Restored to your official targeted benchmark year
+    const target = Date.parse('2030-12-31T00:00:00Z');
     
     if (isNaN(target)) {
       if (el.countdown) el.countdown.textContent = "SCHEDULING ERROR";
@@ -205,10 +204,10 @@
     };
 
     const timerId = setInterval(tick, 1000);
-    tick(); // Fast initial draw before step iteration loop triggers
+    tick(); // Run immediately on initialization
   }
 
-  // Hook entry pipelines smoothly on secure window life events
+  // Hook entry pipelines smoothly on window status flags
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
       loadConfig();

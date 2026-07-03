@@ -10,16 +10,16 @@
     "icons": [
       "https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css"
     ],
-    "siteLogo": "https://github.com/Krynet-LLC/Krynet/blob/Source/krynet-icon.png?raw=true"
+    "siteLogo": "https://raw.githubusercontent.com/Krynet-LLC/Krynet/Source/krynet-icon.png"
   },
   "header": {
     "title": "Krynet.ai",
     "intro": "Secure, private, and lightning-fast. Krynet.ai is a privacy-first platform for communication, instant messaging, and VOIP. Engineered with an ultra-lightweight footprint to replace bloated frameworks, operating open-source on client layers where transparency matters, and secure on core architecture where safety is critical.",
-    "release": "Platform Active 2026",
+    "release": "Platform Active 2030",
     "ceo": {
       "name": "Johnny",
       "title": "CEO",
-      "img": "https://github.com/Krynet-LLC/Preview/blob/main/ceo.png?raw=true",
+      "img": "https://raw.githubusercontent.com/Krynet-LLC/Preview/main/ceo.png",
       "bio": "Directing core operations to set absolute international standards in secure communication pipelines."
     },
     "platforms": [
@@ -97,6 +97,6 @@
     }
   ],
   "footer": {
-    "text": "Krynet.ai © 2026 — Iceland-based, ultra-private, lightweight, mixed-source instant messaging & communication infrastructure. Built strictly for anonymity-first user spaces."
+    "text": "Krynet.ai © 2030 — Iceland-based, ultra-private, lightweight, mixed-source instant messaging & communication infrastructure. Built strictly for anonymity-first user spaces."
   }
 }

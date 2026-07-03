@@ -32,16 +32,21 @@
   }
 
   /**
-   * Pulls production JSON landscape configurations
+   * Pulls exclusively from the root runtime config.json file
    */
   async function loadConfig() {
     try {
-      const response = await fetch('https://raw.githubusercontent.com/Krynet-LLC/Preview/main/config.json');
-      if (!response.ok) throw new Error(`HTTP network error: status ${response.status}`);
+      // Relative path avoids CORS and deployment runtime issues on GitHub Pages domains
+      const response = await fetch('./config.json', { cache: 'no-cache' });
+      
+      if (!response.ok) {
+        throw new Error(`Could not find or load config.json (HTTP status ${response.status})`);
+      }
+      
       const config = await response.json();
       render(config);
     } catch (err) {
-      console.error("Krynet Core Production Render Failure:", err);
+      console.error("Krynet Configuration Load Error:", err);
     }
   }
 
@@ -177,7 +182,6 @@
    * Initializes high-precision release target tracking coordinates
    */
   function initCountdown() {
-    // Restored to your official targeted benchmark year
     const target = Date.parse('2030-12-31T00:00:00Z');
     
     if (isNaN(target)) {
@@ -204,7 +208,7 @@
     };
 
     const timerId = setInterval(tick, 1000);
-    tick(); // Run immediately on initialization
+    tick();
   }
 
   // Hook entry pipelines smoothly on window status flags

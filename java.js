@@ -1,7 +1,7 @@
 (() => {
   'use strict';
 
-  // Specific selectors matching the new IDs
+  // Cached DOM query bindings
   const el = {
     logo: document.getElementById('main-logo'),
     title: document.getElementById('main-title'),
@@ -17,110 +17,205 @@
     footerText: document.getElementById('footer-text')
   };
 
+  /**
+   * Safe helper to build structured icon fragments defensively
+   */
+  function createIconElement(iconClass, fallbackClass = 'fa-solid fa-square') {
+    const icon = document.createElement('i');
+    if (typeof iconClass === 'string' && iconClass.trim()) {
+      // Clean string variants into safe iterable class structures
+      const classes = iconClass.split(/\s+/).filter(Boolean);
+      icon.classList.add(...classes);
+    } else {
+      icon.className = fallbackClass;
+    }
+    return icon;
+  }
+
+  /**
+   * Pulls production JSON landscape configurations
+   */
   async function loadConfig() {
     try {
-      const r = await fetch('https://raw.githubusercontent.com/Krynet-LLC/Preview/main/config.json');
-      if (!r.ok) throw new Error("Failed to load config");
-      const c = await r.json();
-      render(c);
+      const response = await fetch('https://raw.githubusercontent.com/Krynet-LLC/Preview/main/config.json');
+      if (!response.ok) throw new Error(`HTTP network error: status ${response.status}`);
+      const config = await response.json();
+      render(config);
     } catch (err) {
-      console.error("Krynet Load Error:", err);
+      console.error("Krynet Core Production Render Failure:", err);
     }
   }
 
+  /**
+   * Main safe layout build loop
+   */
   function render(c) {
-    // 1. Logo & Branding
-    if (c.site?.siteLogo && el.logo) {
-      el.logo.src = c.site.siteLogo;
-      el.logo.style.display = 'block'; // Reveal after source is set
-    }
-    if (el.title) el.title.textContent = c.site?.title || 'Krynet.ai';
-    if (el.intro) el.intro.textContent = c.header?.intro || '';
+    const data = c || {};
 
-    // 2. CEO Section
-    if (c.header?.ceo && el.ceoSection) {
-      if (el.ceoImg) el.ceoImg.src = c.header.ceo.img || '';
-      if (el.ceoName) el.ceoName.textContent = `${c.header.ceo.name} — ${c.header.ceo.title}`;
-      if (el.ceoBio) el.ceoBio.textContent = c.header.ceo.bio || '';
-      el.ceoSection.style.display = 'block'; // Reveal CEO card
+    // 1. Branding Core Identification Elements
+    if (data.site?.siteLogo && el.logo) {
+      el.logo.src = data.site.siteLogo;
+      el.logo.style.display = 'block';
     }
+    if (el.title) el.title.textContent = data.site?.title || 'Krynet.ai';
+    if (el.intro) el.intro.textContent = data.header?.intro || '';
 
-    // 3. Platforms (Fixed Grid Logic)
-    if (Array.isArray(c.header?.platforms) && el.platformsGrid) {
-      el.platformsGrid.innerHTML = ''; // Clear loading state
-      c.header.platforms.forEach(p => {
-        const div = document.createElement('div');
-        div.className = 'icon-item';
-        // Ensure FA classes are correct: fa-brands or fa-solid
-        div.innerHTML = `<i class="${p.icon}"></i> <span>${p.name} ${p.note ? `<small>${p.note}</small>` : ''}</span>`;
-        el.platformsGrid.appendChild(div);
-      });
+    // 2. Executive Oversight Profile Card
+    if (data.header?.ceo && el.ceoSection) {
+      const ceo = data.header.ceo;
+      if (el.ceoImg) el.ceoImg.src = ceo.img || '';
+      if (el.ceoName) el.ceoName.textContent = `${ceo.name || 'Core Operations'} — ${ceo.title || 'CEO'}`;
+      if (el.ceoBio) el.ceoBio.textContent = ceo.bio || '';
+      el.ceoSection.style.display = 'block';
     }
 
-    // 4. Technologies
-    if (Array.isArray(c.header?.technologies) && el.techGrid) {
-      el.techGrid.innerHTML = '';
-      c.header.technologies.forEach(t => {
-        const div = document.createElement('div');
-        div.className = 'icon-item';
-        div.innerHTML = `<i class="${t.icon}"></i> <span>${t.name}</span>`;
-        el.techGrid.appendChild(div);
-      });
+    // 3. Supported Distributions Grid Framework
+    if (el.platformsGrid) {
+      el.platformsGrid.textContent = ''; // Performance-optimized clear routing
+      if (Array.isArray(data.header?.platforms)) {
+        data.header.platforms.forEach(p => {
+          const itemDiv = document.createElement('div');
+          itemDiv.className = 'icon-item';
+
+          const icon = createIconElement(p.icon);
+          const metaSpan = document.createElement('span');
+          metaSpan.textContent = ` ${p.name || ''} `;
+
+          if (p.note) {
+            const smallTag = document.createElement('small');
+            smallTag.textContent = p.note;
+            metaSpan.appendChild(smallTag);
+          }
+
+          itemDiv.append(icon, metaSpan);
+          el.platformsGrid.appendChild(itemDiv);
+        });
+      }
     }
 
-    // 5. Dynamic Sections (The rest of the content)
-    if (Array.isArray(c.sections) && el.sectionsContainer) {
-      el.sectionsContainer.innerHTML = '';
-      c.sections.forEach(s => {
-        const section = document.createElement('section');
-        section.className = 'info-block';
-        
-        let html = `<h2>${s.title}</h2><div class="feature-grid">`;
-        
-        if (s.features) {
-          s.features.forEach(f => {
-            html += `
-              <div class="card">
-                ${f.icon ? `<i class="${f.icon}"></i>` : ''}
-                <strong>${f.title || ''}</strong>
-                ${f.badge ? `<span class="badge">${f.badge}</span>` : ''}
-                <p>${f.description || f.statement || ''}</p>
-              </div>`;
-          });
-        }
-        
-        html += `</div>`;
-        if (s.note) html += `<p class="section-note"><em>${s.note}</em></p>`;
-        
-        section.innerHTML = html;
-        el.sectionsContainer.appendChild(section);
-      });
+    // 4. Integrated Framework Architecture Stack
+    if (el.techGrid) {
+      el.techGrid.textContent = '';
+      if (Array.isArray(data.header?.technologies)) {
+        data.header.technologies.forEach(t => {
+          const itemDiv = document.createElement('div');
+          itemDiv.className = 'icon-item';
+
+          const icon = createIconElement(t.icon);
+          const titleSpan = document.createElement('span');
+          titleSpan.textContent = ` ${t.name || ''}`;
+
+          itemDiv.append(icon, titleSpan);
+          el.techGrid.appendChild(itemDiv);
+        });
+      }
     }
 
-    if (el.footerText) el.footerText.textContent = c.footer?.text || '';
+    // 5. Dynamic Procedural Section Matrix
+    if (el.sectionsContainer) {
+      el.sectionsContainer.textContent = '';
+      if (Array.isArray(data.sections)) {
+        data.sections.forEach(s => {
+          const sectionBlock = document.createElement('section');
+          sectionBlock.className = 'info-block';
+
+          const heading = document.createElement('h2');
+          heading.textContent = s.title || '';
+          sectionBlock.appendChild(heading);
+
+          const gridDiv = document.createElement('div');
+          gridDiv.className = 'feature-grid';
+
+          if (Array.isArray(s.features)) {
+            s.features.forEach(f => {
+              const cardDiv = document.createElement('div');
+              cardDiv.className = 'card';
+
+              if (f.icon) {
+                cardDiv.appendChild(createIconElement(f.icon));
+              }
+
+              const boldTitle = document.createElement('strong');
+              boldTitle.textContent = f.title || '';
+              cardDiv.appendChild(boldTitle);
+
+              if (f.badge) {
+                const badgeSpan = document.createElement('span');
+                badgeSpan.className = 'badge';
+                badgeSpan.textContent = f.badge;
+                cardDiv.appendChild(badgeSpan);
+              }
+
+              const descParagraph = document.createElement('p');
+              descParagraph.textContent = f.description || f.statement || '';
+              cardDiv.appendChild(descParagraph);
+
+              gridDiv.appendChild(cardDiv);
+            });
+          }
+
+          sectionBlock.appendChild(gridDiv);
+
+          if (s.note) {
+            const noteParagraph = document.createElement('p');
+            noteParagraph.className = 'section-note';
+            const emphasis = document.createElement('em');
+            emphasis.textContent = s.note;
+            noteParagraph.appendChild(emphasis);
+            sectionBlock.appendChild(noteParagraph);
+          }
+
+          el.sectionsContainer.appendChild(sectionBlock);
+        });
+      }
+    }
+
+    // 6. Base Legal / Context Attributions
+    if (el.footerText) el.footerText.textContent = data.footer?.text || '';
   }
 
-  // Countdown logic remains the same but targets id="countdown"
+  /**
+   * Initializes high-precision release target tracking coordinates
+   */
   function initCountdown() {
-    const target = Date.parse('2030-12-31T00:00:00Z');
+    // Standardized global alignment target matching production 2026 configurations
+    const target = Date.parse('2026-12-31T00:00:00Z');
+    
+    if (isNaN(target)) {
+      if (el.countdown) el.countdown.textContent = "SCHEDULING ERROR";
+      return;
+    }
+
     const tick = () => {
       const diff = target - Date.now();
       if (diff <= 0) {
         if (el.countdown) el.countdown.textContent = "SYSTEM ONLINE";
+        clearInterval(timerId);
         return;
       }
+      
       const d = (diff / 86400000) | 0;
       const h = (diff % 86400000 / 3600000) | 0;
       const m = (diff % 3600000 / 60000) | 0;
       const s = (diff % 60000 / 1000) | 0;
-      if (el.countdown) el.countdown.textContent = `${d}d ${h}h ${m}m ${s}s`;
+      
+      if (el.countdown) {
+        el.countdown.textContent = `${d}d ${h}h ${m}m ${s}s`;
+      }
     };
-    setInterval(tick, 1000);
-    tick();
+
+    const timerId = setInterval(tick, 1000);
+    tick(); // Fast initial draw before step iteration loop triggers
   }
 
-  document.addEventListener('DOMContentLoaded', () => {
+  // Hook entry pipelines smoothly on secure window life events
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      loadConfig();
+      initCountdown();
+    });
+  } else {
     loadConfig();
     initCountdown();
-  });
+  }
 })();

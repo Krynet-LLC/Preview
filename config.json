@@ -29,9 +29,12 @@
     ],
     "technologies": [
       { "name": "C++", "icon": "fa-solid fa-code" },
+      { "name": "HTML5", "icon": "fa-brands fa-html5" },
       { "name": "JavaScript", "icon": "fa-brands fa-js" },
-      { "name": "TypeScript", "icon": "fa-solid fa-code" },
+      { "name": "TypeScript", "icon": "fa-solid fa-terminal" },
       { "name": "TailwindCSS", "icon": "fa-solid fa-file-code" },
+      { "name": "Python", "icon": "fa-brands fa-python" },
+      { "name": "Rust", "icon": "fa-brands fa-rust" },
       { "name": "Sciter Engine", "icon": "fa-solid fa-cube" }
     ]
   },
@@ -60,7 +63,9 @@
         { "title": "End-to-end encrypted messaging, voice loops, and media handshakes", "icon": "fa-solid fa-comment-dots", "badge": "SECURITY" },
         { "title": "Passwordless MFA enforcement utilizing native device hardware keys", "icon": "fa-solid fa-lock", "badge": "SECURITY" },
         { "title": "TPM (Trusted Platform Module) secure enclave integrations", "icon": "fa-solid fa-microchip", "badge": "SECURITY" },
-        { "title": "Isolated search capabilities running zero tracker analytics", "icon": "fa-solid fa-magnifying-glass", "badge": "SECURITY" }
+        { "title": "Isolated search capabilities running zero tracker analytics", "icon": "fa-solid fa-magnifying-glass", "badge": "SECURITY" },
+        { "title": "Sedicii Zero-Knowledge Proof (ZKP) Age Assurance", "icon": "fa-solid fa-user-check", "badge": "PRIVACY", "description": "Verifies user age requirements cryptographically without disclosing actual birthdates or identity documents." },
+        { "title": "ipinfo.io Suspicious Login & IP Intelligence Routing", "icon": "fa-solid fa-circle-exclamation", "badge": "SECURITY", "description": "Fetches IP data locally to detect anomalies and flag unrecognized network locations or suspicious access attempts." }
       ]
     },
     {

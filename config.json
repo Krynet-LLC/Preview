@@ -79,7 +79,8 @@
     {
       "title": "Economy & Licensing Models",
       "features": [
-        { "title": "Secure transactional routing including cryptocurrency tracking options", "icon": "fa-solid fa-credit-card" },
+        { "title": "Stripe Gateway integration for traditional processing channels", "icon": "fa-brands fa-cc-stripe" },
+        { "title": "Cryptomus Gateway payment pipeline for privacy-focused cryptocurrency transactions", "icon": "fa-brands fa-btc" },
         { "title": "Core Application Layers — Proprietary Closed Security License", "icon": "fa-solid fa-shield-halved", "description": "Core routing protocols, server binaries, and encryption pipeline designs are closed source to preserve integrity against exploit vectors." },
         { "title": "Client UI & Extensions Layout — GPL-3.0 Open License", "icon": "fa-solid fa-code-branch", "description": "The visual presentation shell, modifications, and secure local layouts are completely auditable and distributed openly under GPL-3.0 parameters." },
         { "title": "LibreJS Compatibility", "icon": "fa-brands fa-free-code-camp", "description": "Enforces freedom-respecting, script-restricted execution layout compliance." }
@@ -89,7 +90,7 @@
       "title": "Ownership & Legal Standarounds",
       "features": [
         { "title": "Krynet, LLC – Incorporated and stationed under Icelandic jurisdiction", "icon": "fa-solid fa-flag" },
-        { "title": "Fully compliant with strict GDPR mandates and Icelandic privacy foundation directives", "icon": "fa-solid fa-gavel" }
+        { "title": "Fully compliant with strict GDPR mandates and Icelandic privacy foundation directives", "icon": "fa-solid fa-earth-europe" }
       ]
     },
     {

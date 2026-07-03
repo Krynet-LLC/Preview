@@ -25,8 +25,7 @@
     "platforms": [
       { "name": "Linux Sandbox", "icon": "fa-brands fa-linux", "note": "Universal Flatpak distribution" },
       { "name": "Android Native", "icon": "fa-brands fa-android", "note": "Production standalone APK" },
-      { "name": "iOS Device", "icon": "fa-brands fa-apple", "note": "Community tree distribution" },
-      { "name": "Web Client", "icon": "fa-solid fa-globe", "note": "krynet.ai/web" }
+      { "name": "Web", "icon": "fa-solid fa-globe", "note": "krynet.ai/web" }
     ],
     "technologies": [
       { "name": "C++", "icon": "fa-solid fa-code" },

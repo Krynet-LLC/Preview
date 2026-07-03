@@ -2,168 +2,180 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ========= GLOBAL ========= */
+/* ========= LAYOUT SYSTEM LAYER ========= */
 
-*,
-*::before,
-*::after {
-  @apply box-border;
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  body {
+    @apply m-0 min-h-screen bg-gray-950 text-gray-100 font-['Orbitron'] antialiased selection:bg-emerald-500 selection:text-black;
+    /* Deep void core radial backdrop illumination */
+    background: radial-gradient(circle at top, #0c1524 0%, #030712 70%);
+  }
 }
 
-body {
-  @apply m-0 min-h-screen bg-black text-white font-['Orbitron'] antialiased;
-  background: radial-gradient(circle at top, #1a0033, #000000 60%);
-}
+/* ========= COMPONENT ABSTRACT LAYER ========= */
 
-/* ========= HERO ========= */
+@layer components {
+  
+  /* --- Hero Pipeline --- */
+  .hero {
+    @apply text-center px-6 pt-24 pb-16 border-b border-gray-800 bg-black/20 backdrop-blur-[2px];
+  }
 
-.hero {
-  @apply text-center px-6 pt-28 pb-20 border-b border-white/10;
-}
+  .site-logo {
+    @apply mx-auto mb-6 opacity-90 transition-opacity duration-300 hover:opacity-100;
+    max-width: 130px;
+    height: auto;
+    filter: drop-shadow(0 0 12px rgba(16, 185, 129, 0.3));
+  }
 
-.site-logo {
-  @apply mx-auto mb-6 w-28 h-auto opacity-90;
-}
+  .title {
+    @apply text-[clamp(2.2rem,6vw,4rem)] font-extrabold tracking-wider text-white mb-6 uppercase;
+    text-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
+  }
 
-.title {
-  @apply text-[clamp(2.5rem,5vw,4rem)] font-bold text-red-500 mb-6;
-  text-shadow: 0 0 20px rgba(255, 0, 0, 0.6);
-}
+  .intro {
+    @apply max-w-2xl mx-auto text-sm md:text-base text-gray-400 leading-relaxed mb-8 font-sans;
+  }
 
-.intro {
-  @apply max-w-2xl mx-auto text-lg text-purple-300 leading-relaxed mb-6;
-}
+  .release {
+    @apply text-xs text-emerald-400/70 tracking-[0.25em] uppercase font-semibold;
+  }
 
-.release {
-  @apply text-sm text-white/60 tracking-widest;
-}
+  /* --- Executive Verification Card --- */
+  .ceo-card {
+    @apply mt-12 max-w-xl mx-auto bg-gray-900/40 border border-gray-800/80 rounded-xl p-6 backdrop-blur-md text-center transition-all duration-300;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+  }
+  
+  .ceo-card:hover {
+    @apply border-emerald-500/30;
+    box-shadow: 0 0 25px rgba(16, 185, 129, 0.15);
+  }
 
-/* ========= CEO CARD ========= */
+  .ceo-card img {
+    @apply w-20 h-20 rounded-full object-cover mx-auto mb-4 border-2 border-emerald-500/40 shadow-md;
+  }
 
-.ceo-card {
-  @apply mt-12 max-w-xl mx-auto bg-black/60 border border-purple-800/40 rounded-2xl p-8 backdrop-blur-md text-center;
-  box-shadow: 0 0 30px rgba(75, 0, 130, 0.4);
-}
+  .ceo-card h3 {
+    @apply text-base font-bold tracking-wide text-white mb-1;
+  }
 
-.ceo-card img {
-  @apply w-24 h-24 rounded-full object-cover mx-auto mb-4 border border-red-600/40;
-}
+  .ceo-card p {
+    @apply text-xs text-gray-400 leading-relaxed font-sans;
+  }
 
-.ceo-card h3 {
-  @apply text-lg font-semibold mb-2;
-}
+  /* --- Infrastructure Metrics Interface --- */
+  .icon-grid {
+    @apply grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-6xl mx-auto mt-12 px-6;
+  }
 
-.ceo-card p {
-  @apply text-sm text-purple-300 leading-relaxed;
-}
+  .icon-item {
+    @apply flex flex-col items-center justify-center gap-3 bg-gray-950/60 border border-gray-900 rounded-xl p-5 text-xs font-semibold tracking-wider text-gray-300 transition-all duration-300 ease-out;
+    will-change: transform, border-color, box-shadow;
+  }
 
-/* ========= ICON GRID ========= */
+  .icon-item i {
+    @apply text-emerald-400 text-xl transition-transform duration-300;
+  }
 
-.icon-grid {
-  @apply grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8 max-w-5xl mx-auto mt-10;
-}
+  .icon-item:hover {
+    @apply -translate-y-1 border-emerald-500/40 text-white;
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.15);
+  }
+  
+  .icon-item:hover i {
+    @apply scale-110;
+  }
 
-.icon-item {
-  @apply flex flex-col items-center justify-center gap-2 bg-black/50 border border-white/10 rounded-xl p-6 text-sm transition-all duration-300;
-}
+  /* --- Information Layout Blocks --- */
+  .sections-container {
+    @apply px-6 py-16 space-y-16;
+  }
 
-.icon-item i {
-  @apply text-red-500 text-2xl;
-}
+  .sections-container section {
+    @apply max-w-6xl mx-auto;
+  }
 
-.icon-item:hover {
-  @apply -translate-y-1 border-purple-500/40;
-  box-shadow: 0 0 20px rgba(139, 0, 139, 0.4);
-}
+  .sections-container h2 {
+    @apply text-lg font-bold text-white mb-8 tracking-widest uppercase border-l-4 border-emerald-500 pl-3 text-left;
+  }
 
-/* ========= SECTIONS ========= */
+  /* --- Matrix Adaptive Feature Grid --- */
+  .feature-grid {
+    @apply grid sm:grid-cols-2 md:grid-cols-3 gap-6;
+  }
 
-.sections-container {
-  @apply px-6 py-20 space-y-20;
-}
+  .card {
+    @apply bg-gray-950/40 border border-gray-900 rounded-xl p-6 text-left transition-all duration-300 ease-out flex flex-col justify-between backdrop-blur-sm;
+    will-change: transform, border-color, box-shadow;
+  }
 
-.sections-container section {
-  @apply max-w-6xl mx-auto text-center;
-}
+  .card i {
+    @apply text-emerald-400 text-lg mb-4 block;
+  }
 
-.sections-container h2 {
-  @apply text-2xl font-bold text-red-500 mb-12 tracking-wider;
-}
+  .card strong {
+    @apply block text-base font-bold text-white mb-2 tracking-wide;
+  }
 
-/* ========= FEATURE GRID ========= */
+  .card p {
+    @apply text-xs md:text-sm text-gray-400 leading-relaxed font-sans;
+  }
 
-.feature-grid {
-  @apply grid md:grid-cols-3 gap-10;
-}
+  .card:hover {
+    @apply -translate-y-1 border-gray-800 bg-gray-900/20;
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.7);
+  }
 
-.card {
-  @apply bg-black/60 border border-purple-900/40 rounded-xl p-8 text-left transition-all duration-300;
-  backdrop-filter: blur(6px);
-}
+  /* --- Token Verification Badges --- */
+  .badge {
+    @apply text-[10px] uppercase font-mono tracking-widest font-extrabold px-2.5 py-0.5 rounded-md ml-2 border vertical-align[middle];
+  }
 
-.card i {
-  @apply text-red-500 text-xl mb-3;
-}
+  .badge.alpha {
+    @apply bg-rose-950/40 text-rose-400 border-rose-500/30;
+  }
 
-.card strong {
-  @apply block text-lg mb-2;
-}
+  .badge.beta {
+    @apply bg-amber-950/40 text-amber-400 border-amber-500/30;
+  }
 
-.card p {
-  @apply text-sm text-purple-300 leading-relaxed;
-}
+  .badge.stable {
+    @apply bg-emerald-950/40 text-emerald-400 border-emerald-500/30;
+  }
+  
+  /* Fallback template badge routing configuration */
+  .badge:not(.alpha):not(.beta):not(.stable) {
+    @apply bg-gray-900/60 text-emerald-400 border-emerald-500/30;
+  }
 
-.card:hover {
-  @apply -translate-y-1;
-  box-shadow: 0 0 25px rgba(75, 0, 130, 0.5);
-}
-/* ======== Site logo =================*/
-.site-logo {
-  @apply mx-auto mb-6 opacity-80;
-  max-width: 140px;
-  height: auto;
-}
-/* ========= BADGES ========= */
+  /* --- Distribution Routing Links --- */
+  .repo-list {
+    @apply mt-6 flex flex-col gap-3 max-w-xl mx-auto;
+  }
 
-.badge {
-  @apply text-xs px-2 py-1 rounded-full ml-2;
-}
+  .repo-list a {
+    @apply flex items-center justify-between bg-gray-950/60 border border-gray-900 rounded-lg p-4 text-xs font-mono tracking-wide text-gray-400 transition-all duration-300;
+  }
 
-.badge.alpha {
-  @apply bg-red-900 text-red-400;
-}
+  .repo-list a:hover {
+    @apply border-emerald-500/30 text-white translate-x-1;
+    box-shadow: 0 0 15px rgba(16, 185, 129, 0.05);
+  }
 
-.badge.beta {
-  @apply bg-purple-900 text-purple-300;
-}
+  /* --- Supplementary Node Context --- */
+  .section-note {
+    @apply mt-6 text-xs text-gray-500 font-sans italic text-left pl-4 border-l border-gray-800;
+  }
 
-.badge.stable {
-  @apply bg-green-900 text-green-400;
-}
-
-/* ========= REPO LIST ========= */
-
-.repo-list {
-  @apply mt-8 flex flex-col gap-4;
-}
-
-.repo-list a {
-  @apply block bg-black/50 border border-white/10 rounded-lg p-4 text-sm transition-all duration-300;
-}
-
-.repo-list a:hover {
-  @apply border-purple-500/40;
-  box-shadow: 0 0 15px rgba(75, 0, 130, 0.4);
-}
-
-/* ========= SECTION NOTE ========= */
-
-.section-note {
-  @apply mt-8 text-sm text-white/50;
-}
-
-/* ========= FOOTER ========= */
-
-.footer {
-  @apply border-t border-white/10 py-8 text-center text-sm text-white/40;
+  /* --- System Footer Signature --- */
+  .footer {
+    @apply border-t border-gray-900 bg-gray-950/80 py-8 text-center text-xs text-gray-500 tracking-wide font-sans mt-auto;
+  }
 }

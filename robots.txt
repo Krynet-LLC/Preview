@@ -1,5 +1,33 @@
-# robots.txt - Strictest, block all crawlers from everything
+# ====================================================================
+# PRODUCTION ROBOTS.TXT
+# Purpose: Complete lockout. Blocks all web crawlers, scrapers, and 
+#          AI bots from accessing or indexing any part of this site.
+# ====================================================================
+
 User-agent: *
 Disallow: /
-Noindex: /
-Nofollow: /
+
+# Explicitly targeting known aggressive AI scrapers and crawlers 
+# that occasionally ignore the global wildcard (*) rule.
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: Anthropic-ai
+Disallow: /
+
+User-agent: Claude-Web
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: FacebookBot
+Disallow: /
+
+# No sitemap is defined because the site should not be crawled.

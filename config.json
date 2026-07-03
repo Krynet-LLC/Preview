@@ -61,6 +61,8 @@
       "features": [
         { "title": "Anonymous account architecture needing zero personal data components", "icon": "fa-solid fa-user-secret" },
         { "title": "End-to-end encrypted messaging, voice loops, and media handshakes", "icon": "fa-solid fa-comment-dots", "badge": "SECURITY" },
+        { "title": "Default Cloud-Routed VOIP Infrastructure", "icon": "fa-solid fa-cloud", "description": "Voice and video call traffic is safely proxy-routed through Krynet's secure cloud infrastructure by default to obscure direct connections." },
+        { "title": "Tor-Encapsulated Peer-to-Peer (P2P) Calling Mode", "icon": "fa-solid fa-network-wired", "badge": "ADVANCED OPT-IN", "description": "Optional direct P2P pipeline that automatically funnels audio and video streaming layers through the Tor network to stop local IP metadata leaks. Must be manually enabled by both participating peers to successfully establish the handshake." },
         { "title": "Passwordless MFA enforcement utilizing native device hardware keys", "icon": "fa-solid fa-lock", "badge": "SECURITY" },
         { "title": "TPM (Trusted Platform Module) secure enclave integrations", "icon": "fa-solid fa-microchip", "badge": "SECURITY" },
         { "title": "Isolated search capabilities running zero tracker analytics", "icon": "fa-solid fa-magnifying-glass", "badge": "SECURITY" },
@@ -81,6 +83,8 @@
       "features": [
         { "title": "Stripe Gateway integration for traditional processing channels", "icon": "fa-brands fa-cc-stripe" },
         { "title": "Cryptomus Gateway payment pipeline for privacy-focused cryptocurrency transactions", "icon": "fa-brands fa-btc" },
+        { "title": "Standard UGC Creator Payout Structure (50% - 55% Creator Share)", "icon": "fa-solid fa-percentage", "description": "Default baseline revenue split for independent user-generated content deployment out of storefront systems, subject to platform commission fees." },
+        { "title": "Premium Staff-Recommended Showcase Allocation (60% - 70% Creator Share)", "icon": "fa-solid fa-star", "badge": "FEATURED", "description": "Elevated dynamic creator incentive program tier unlocking higher profit retention splits for front-page highlighted and highly popular assets endorsed directly via platform management modules." },
         { "title": "Core Application Layers — Proprietary Closed Security License", "icon": "fa-solid fa-shield-halved", "description": "Core routing protocols, server binaries, and encryption pipeline designs are closed source to preserve integrity against exploit vectors." },
         { "title": "Client UI & Extensions Layout — GPL-3.0 Open License", "icon": "fa-solid fa-code-branch", "description": "The visual presentation shell, modifications, and secure local layouts are completely auditable and distributed openly under GPL-3.0 parameters." },
         { "title": "LibreJS Compatibility", "icon": "fa-brands fa-free-code-camp", "description": "Enforces freedom-respecting, script-restricted execution layout compliance." }

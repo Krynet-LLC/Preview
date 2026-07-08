@@ -4,27 +4,23 @@
     "description": "Iceland-based, ultra-private, lightweight, and efficient instant messaging and VOIP platform. Mixed-source architecture built for absolute privacy and security.",
     "releaseYear": 2030,
     "country": "Iceland",
-    "fonts": [
-      "https://fonts.bunny.net/css?family=orbitron:400,700&display=swap"
-    ],
-    "icons": [
-      "https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css"
-    ],
-    "siteLogo": "https://raw.githubusercontent.com/Krynet-LLC/Krynet/Source/krynet-icon.png"
+    "fonts": ["https://fonts.bunny.net/css?family=orbitron:400,700&display=swap"],
+    "icons": ["https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css"],
+    "siteLogo": "https://cdn.jsdelivr.net/gh/Krynet-LLC/Krynet@Source/krynet-icon.png"
   },
   "header": {
     "title": "Krynet.ai",
-    "intro": "Secure, private, and lightning-fast. Krynet.ai is a privacy-first platform for communication, instant messaging, and VOIP. Engineered with an ultra-lightweight footprint to replace bloated frameworks, operating open-source on client layers where transparency matters, and secure on core architecture where safety is critical.",
+    "intro": "Secure, private, and lightning-fast. Krynet.ai is an ultra-lightweight, mixed-source privacy-first communication platform.",
     "release": "Platform Active 2030",
     "ceo": {
       "name": "Johnny",
       "title": "CEO",
-      "img": "https://raw.githubusercontent.com/Krynet-LLC/Preview/main/ceo.png",
-      "bio": "Directing core operations to set absolute international standards in secure communication pipelines."
+      "img": "https://cdn.jsdelivr.net/gh/Krynet-LLC/Preview@main/ceo.png",
+      "bio": "Directing core operations to set international standards in secure communication pipelines."
     },
     "platforms": [
-      { "name": "Linux Sandbox", "icon": "fa-brands fa-linux", "note": "Universal Flatpak distribution" },
-      { "name": "Android Native", "icon": "fa-brands fa-android", "note": "Production standalone APK" },
+      { "name": "Linux Sandbox", "icon": "fa-brands fa-linux", "note": "Universal Flatpak" },
+      { "name": "Android Native", "icon": "fa-brands fa-android", "note": "Production APK" },
       { "name": "Web", "icon": "fa-solid fa-globe", "note": "krynet.ai/web" }
     ],
     "technologies": [
@@ -39,11 +35,11 @@
     ]
   },
   "highlights": [
-    "Ultra-lightweight execution optimizing local CPU and RAM boundaries",
+    "Ultra-lightweight execution optimizing CPU and RAM boundaries",
     "Asynchronous End-to-End Encryption protocol layer isolation",
-    "Completely passwordless configuration relying on WebAuthn and secure hardware keys",
-    "Stripped, minimal metadata storage profile enforcing absolute user anonymity",
-    "Compatible with open-source frontend architectures and alternative installation indexes"
+    "Passwordless configuration using WebAuthn hardware keys",
+    "Minimal metadata storage profile enforcing user anonymity",
+    "Compatible with open-source frontends and alternative installation indexes"
   ],
   "sections": [
     {
@@ -52,22 +48,23 @@
         { "title": "Hybrid open-source frontend client model", "icon": "fa-solid fa-code-branch", "badge": "CLIENT" },
         { "title": "Ultra-fast optimized API communications pipeline", "icon": "fa-solid fa-rocket" },
         { "title": "Double-layer encryption routing standard", "icon": "fa-solid fa-shield-halved", "badge": "SECURITY" },
-        { "title": "WebAuthn / Passkeys authentication architecture (No SMS verification required)", "icon": "fa-solid fa-key", "badge": "SECURITY" },
-        { "title": "Native plugin and sandboxed extension capability modules", "icon": "fa-solid fa-puzzle-piece" }
+        { "title": "WebAuthn / Passkeys authentication architecture", "icon": "fa-solid fa-key", "badge": "SECURITY" },
+        { "title": "Native plugin and sandboxed extension modules", "icon": "fa-solid fa-puzzle-piece" }
       ]
     },
     {
       "title": "Privacy & System Security",
       "features": [
-        { "title": "Anonymous account architecture needing zero personal data components", "icon": "fa-solid fa-user-secret" },
-        { "title": "End-to-end encrypted messaging, voice loops, and media handshakes", "icon": "fa-solid fa-comment-dots", "badge": "SECURITY" },
-        { "title": "Default Cloud-Routed VOIP Infrastructure", "icon": "fa-solid fa-cloud", "description": "Voice and video call traffic is safely proxy-routed through Krynet's secure cloud infrastructure by default to obscure direct connections." },
-        { "title": "Tor-Encapsulated Peer-to-Peer (P2P) Calling Mode", "icon": "fa-solid fa-network-wired", "badge": "ADVANCED OPT-IN", "description": "Optional direct P2P pipeline that automatically funnels audio and video streaming layers through the Tor network to stop local IP metadata leaks. Must be manually enabled by both participating peers to successfully establish the handshake." },
-        { "title": "Passwordless MFA enforcement utilizing native device hardware keys", "icon": "fa-solid fa-lock", "badge": "SECURITY" },
-        { "title": "TPM (Trusted Platform Module) secure enclave integrations", "icon": "fa-solid fa-microchip", "badge": "SECURITY" },
+        { "title": "Anonymous account architecture (zero personal data)", "icon": "fa-solid fa-user-secret" },
+        { "title": "E2EE messaging, voice loops, and media handshakes", "icon": "fa-solid fa-comment-dots", "badge": "SECURITY" },
+        { "title": "Default Cloud-Routed VOIP Infrastructure", "icon": "fa-solid fa-cloud", "description": "Voice and video calls are proxy-routed through safe cloud infrastructure to obscure direct connections." },
+        { "title": "Tor-Encapsulated Peer-to-Peer (P2P) Calling Mode", "icon": "fa-solid fa-network-wired", "badge": "ADVANCED OPT-IN", "description": "Optional direct P2P pipeline that funnels streaming layers through Tor to stop IP metadata leaks." },
+        { "title": "Passwordless MFA utilizing native hardware keys", "icon": "fa-solid fa-lock", "badge": "SECURITY" },
+        { "title": "TPM secure enclave integrations", "icon": "fa-solid fa-microchip", "badge": "SECURITY" },
         { "title": "Isolated search capabilities running zero tracker analytics", "icon": "fa-solid fa-magnifying-glass", "badge": "SECURITY" },
-        { "title": "Sedicii Zero-Knowledge Proof (ZKP) Age Assurance", "icon": "fa-solid fa-user-check", "badge": "PRIVACY", "description": "Verifies user age requirements cryptographically without disclosing actual birthdates or identity documents." },
-        { "title": "ipinfo.io Suspicious Login & IP Intelligence Routing", "icon": "fa-solid fa-circle-exclamation", "badge": "SECURITY", "description": "Fetches IP data locally to detect anomalies and flag unrecognized network locations or suspicious access attempts." }
+        { "title": "Sedicii Zero-Knowledge Proof (ZKP) Age Assurance", "icon": "fa-solid fa-user-check", "badge": "PRIVACY", "description": "Verifies age requirements cryptographically without disclosing actual identity documents." },
+        { "title": "ipinfo.io Suspicious Login & IP Intelligence Routing", "icon": "fa-solid fa-circle-exclamation", "badge": "SECURITY", "description": "Fetches IP data locally to detect anomalies and flag unrecognized network locations." },
+        { "title": "DNS.SB Privacy-Focused DNS Integration", "icon": "fa-solid fa-server", "badge": "PRIVACY", "description": "Routes network queries via DNS.SB for completely log-free, highly secure, and optimized resolution." }
       ]
     },
     {
@@ -81,31 +78,31 @@
     {
       "title": "Economy & Licensing Models",
       "features": [
-        { "title": "Stripe Gateway integration for traditional processing channels", "icon": "fa-brands fa-cc-stripe" },
-        { "title": "Cryptomus Gateway payment pipeline for privacy-focused cryptocurrency transactions", "icon": "fa-brands fa-btc" },
-        { "title": "Standard UGC Creator Payout Structure (50% - 55% Creator Share)", "icon": "fa-solid fa-percentage", "description": "Default baseline revenue split for independent user-generated content deployment out of storefront systems, subject to platform commission fees." },
-        { "title": "Premium Staff-Recommended Showcase Allocation (60% - 70% Creator Share)", "icon": "fa-solid fa-star", "badge": "FEATURED", "description": "Elevated dynamic creator incentive program tier unlocking higher profit retention splits for front-page highlighted and highly popular assets endorsed directly via platform management modules." },
-        { "title": "Core Application Layers — Proprietary Closed Security License", "icon": "fa-solid fa-shield-halved", "description": "Core routing protocols, server binaries, and encryption pipeline designs are closed source to preserve integrity against exploit vectors." },
-        { "title": "Client UI & Extensions Layout — GPL-3.0 Open License", "icon": "fa-solid fa-code-branch", "description": "The visual presentation shell, modifications, and secure local layouts are completely auditable and distributed openly under GPL-3.0 parameters." },
+        { "title": "Stripe Gateway integration for traditional processing", "icon": "fa-brands fa-cc-stripe" },
+        { "title": "Cryptomus Gateway for privacy cryptocurrency transactions", "icon": "fa-brands fa-btc" },
+        { "title": "Standard UGC Creator Payout Structure (50% - 55% Share)", "icon": "fa-solid fa-percentage", "description": "Default baseline revenue split for independent user-generated content deployment." },
+        { "title": "Premium Showcase Allocation (60% - 70% Share)", "icon": "fa-solid fa-star", "badge": "FEATURED", "description": "Elevated incentive program tier unlocking higher profit retention splits for front-page highlighted assets." },
+        { "title": "Core Application Layers — Proprietary Closed Security License", "icon": "fa-solid fa-shield-halved", "description": "Core routing protocols, server binaries, and encryption pipeline designs are closed source to preserve integrity." },
+        { "title": "Client UI & Extensions Layout — GPL-3.0 Open License", "icon": "fa-solid fa-code-branch", "description": "Visual presentation shell and layouts are fully auditable and distributed under GPL-3.0." },
         { "title": "LibreJS Compatibility", "icon": "fa-brands fa-free-code-camp", "description": "Enforces freedom-respecting, script-restricted execution layout compliance." }
       ]
     },
     {
       "title": "Ownership & Legal Standarounds",
       "features": [
-        { "title": "Krynet, LLC – Incorporated and stationed under Icelandic jurisdiction", "icon": "fa-solid fa-flag" },
-        { "title": "Fully compliant with strict GDPR mandates and Icelandic privacy foundation directives", "icon": "fa-solid fa-earth-europe" }
+        { "title": "Krynet, LLC – Incorporated under Icelandic jurisdiction", "icon": "fa-solid fa-flag" },
+        { "title": "Fully compliant with GDPR and Icelandic privacy foundation directives", "icon": "fa-solid fa-earth-europe" }
       ]
     },
     {
       "title": "Distribution Index",
       "features": [
-        { "title": "Official Direct Source Code Repositories", "icon": "fa-solid fa-code-branch", "description": "Official code paths and open client code bases are public for transparency validations." },
-        { "title": "Decentralized Distribution Packages", "icon": "fa-solid fa-download", "description": "Available through independent indexes like F-Droid, AltStore, and raw packages to eliminate vendor surveillance dependencies." }
+        { "title": "Official Direct Source Code Repositories", "icon": "fa-solid fa-code-branch", "description": "Official open client code bases are public for transparency validations." },
+        { "title": "Decentralized Distribution Packages", "icon": "fa-solid fa-download", "description": "Available via F-Droid, AltStore, and raw packages to eliminate vendor surveillance." }
       ]
     }
   ],
   "footer": {
-    "text": "Krynet.ai © 2030 — Iceland-based, ultra-private, lightweight, mixed-source instant messaging & communication infrastructure. Built strictly for anonymity-first user spaces."
+    "text": "Krynet.ai © 2030 — Iceland-based, mixed-source instant messaging & communication infrastructure. Built for anonymity-first user spaces."
   }
 }

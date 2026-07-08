@@ -58,6 +58,7 @@
         { "title": "Anonymous account architecture (zero personal data)", "icon": "fa-solid fa-user-secret" },
         { "title": "E2EE messaging, voice loops, and media handshakes", "icon": "fa-solid fa-comment-dots", "badge": "SECURITY" },
         { "title": "Default Cloud-Routed VOIP Infrastructure", "icon": "fa-solid fa-cloud", "description": "Voice and video calls are proxy-routed through safe cloud infrastructure to obscure direct connections." },
+        { "title": "3-Node Tor Messaging Relay Architecture", "icon": "fa-solid fa-circle-nodes", "badge": "SECURITY", "description": "All instant messages are automatically funneled through 3 distinct, independent Tor nodes to fully obscure the origin source and guarantee absolute anonymity." },
         { "title": "Tor-Encapsulated Peer-to-Peer (P2P) Calling Mode", "icon": "fa-solid fa-network-wired", "badge": "ADVANCED OPT-IN", "description": "Optional direct P2P pipeline that funnels streaming layers through Tor to stop IP metadata leaks." },
         { "title": "Passwordless MFA utilizing native hardware keys", "icon": "fa-solid fa-lock", "badge": "SECURITY" },
         { "title": "TPM secure enclave integrations", "icon": "fa-solid fa-microchip", "badge": "SECURITY" },
@@ -83,7 +84,7 @@
         { "title": "Standard UGC Creator Payout Structure (50% - 55% Share)", "icon": "fa-solid fa-percentage", "description": "Default baseline revenue split for independent user-generated content deployment." },
         { "title": "Premium Showcase Allocation (60% - 70% Share)", "icon": "fa-solid fa-star", "badge": "FEATURED", "description": "Elevated incentive program tier unlocking higher profit retention splits for front-page highlighted assets." },
         { "title": "Core Application Layers — Proprietary Closed Security License", "icon": "fa-solid fa-shield-halved", "description": "Core routing protocols, server binaries, and encryption pipeline designs are closed source to preserve integrity." },
-        { "title": "Client UI & Extensions Layout — GPL-3.0 Open License", "icon": "fa-solid fa-code-branch", "description": "Visual presentation shell and layouts are fully auditable and distributed under GPL-3.0." },
+        { "title": "Client UI & Extensions Layout — AGPL-3.0 Open License", "icon": "fa-solid fa-code-branch", "description": "Visual presentation shell and layouts are fully auditable and distributed under AGPL-3.0 parameters." },
         { "title": "LibreJS Compatibility", "icon": "fa-brands fa-free-code-camp", "description": "Enforces freedom-respecting, script-restricted execution layout compliance." }
       ]
     },
